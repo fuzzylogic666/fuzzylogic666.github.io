@@ -1,3 +1,531 @@
-AgentBase<br>
-Create agents that click, type, and think — so you don’t have to.<br><br>
-Built for builders. Launching soon! 🧠💻
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentBase — Create agents that use computers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Abstract AI Agent Shadow */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0.5) rotate(0deg);
+            animation: revealAgent 2s ease-out 1s forwards;
+            pointer-events: none;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #a0a0a0;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.2s forwards, bounce 2s ease-in-out 2s infinite;
+        }
+
+        .scroll-hint::before {
+            content: '↓';
+            font-size: 1.5rem;
+            color: #666;
+        }
+
+        /* Teaser Panels */
+        .teaser-section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .teaser-panel {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+            position: relative;
+        }
+
+        .teaser-panel.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Computer Shadow for Panel 1 */
+        .teaser-panel:nth-child(1)::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            width: 150px;
+            height: 100px;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.06) 0%, transparent 50%);
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateX(-50px) scale(0.8);
+            transition: all 1s ease-out 0.3s;
+        }
+
+        .teaser-panel:nth-child(1).visible::before {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+
+        /* Network Nodes Shadow for Panel 2 */
+        .teaser-panel:nth-child(2)::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 20%;
+            width: 120px;
+            height: 120px;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.04) 0%, transparent 50%);
+            opacity: 0;
+            transform: scale(0.5) rotate(45deg);
+            transition: all 1s ease-out 0.3s;
+        }
+
+        .teaser-panel:nth-child(2).visible::before {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        /* Circuit Pattern Shadow for Panel 3 */
+        .teaser-panel:nth-child(3)::before {
+            content: '';
+            position: absolute;
+            bottom: 20%;
+            left: 10%;
+            width: 180px;
+            height: 80px;
+            background:
+                linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 20%, transparent 40%),
+                linear-gradient(90deg, transparent 60%, rgba(255, 255, 255, 0.05) 80%, transparent 100%),
+                linear-gradient(0deg, transparent 0%, rgba(255, 255, 255, 0.03) 50%, transparent 100%);
+            opacity: 0;
+            transform: translateY(30px) scale(0.7);
+            transition: all 1s ease-out 0.3s;
+        }
+
+        .teaser-panel:nth-child(3).visible::before {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Floating Particles Shadow for Panel 4 */
+        .teaser-panel:nth-child(4)::before {
+            content: '';
+            position: absolute;
+            top: 30%;
+            right: 10%;
+            width: 100px;
+            height: 100px;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 40%, rgba(255, 255, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.06) 0%, transparent 40%);
+            opacity: 0;
+            transform: scale(0.3) rotate(-15deg);
+            transition: all 1s ease-out 0.3s;
+        }
+
+        .teaser-panel:nth-child(4).visible::before {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .teaser-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .teaser-title {
+            font-size: 3.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #d0d0d0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .teaser-subtitle {
+            font-size: 1.25rem;
+            color: #888;
+            font-weight: 400;
+        }
+
+        /* Final Section */
+        .final-section {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .final-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Final AI Agent Cluster */
+        .final-section::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 200px;
+            background:
+                radial-gradient(circle at 25% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 75% 40%, rgba(255, 255, 255, 0.06) 0%, transparent 60%),
+                radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.04) 0%, transparent 60%);
+            opacity: 0;
+            animation: revealFinalAgent 2s ease-out 0.5s forwards;
+            pointer-events: none;
+        }
+
+        .launching-soon {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        .email-capture {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: #666;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .email-input::placeholder {
+            color: #666;
+        }
+
+        .notify-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .notify-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        @keyframes revealAgent {
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(360deg);
+            }
+        }
+
+        @keyframes revealFinalAgent {
+            to {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3rem;
+            }
+
+            .tagline {
+                font-size: 1.25rem;
+            }
+
+            .teaser-title {
+                font-size: 2.5rem;
+            }
+
+            .launching-soon {
+                font-size: 2rem;
+            }
+
+            .email-form {
+                flex-direction: column;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            /* Hide shadows on mobile for cleaner look */
+            .hero::after,
+            .teaser-panel::before,
+            .final-section::after {
+                display: none;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="logo">AgentBase</h1>
+            <p class="tagline">Create agents that use computers — so you don't have to.</p>
+        </div>
+        <div class="scroll-hint"></div>
+    </section>
+
+    <!-- Teaser Panels -->
+    <section class="teaser-section">
+        <div class="container">
+            <div class="teaser-panel" id="panel1">
+                <div class="teaser-content">
+                    <h2 class="teaser-title">Built for developers.</h2>
+                    <p class="teaser-subtitle">Infrastructure that just works.</p>
+                </div>
+            </div>
+
+            <div class="teaser-panel" id="panel2">
+                <div class="teaser-content">
+                    <h2 class="teaser-title">Runs anywhere.</h2>
+                    <p class="teaser-subtitle">Hosted or your cloud.</p>
+                </div>
+            </div>
+
+            <div class="teaser-panel" id="panel3">
+                <div class="teaser-content">
+                    <h2 class="teaser-title">Bring your own LLMs, tools, and apps.</h2>
+                    <p class="teaser-subtitle">Extensible by design.</p>
+                </div>
+            </div>
+
+            <div class="teaser-panel" id="panel4">
+                <div class="teaser-content">
+                    <h2 class="teaser-title">The infrastructure fades away.</h2>
+                    <p class="teaser-subtitle">Managed runtime, observability, and more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Section -->
+    <section class="final-section">
+        <div class="container">
+            <h2 class="launching-soon">Launching soon.</h2>
+            <div class="email-capture">
+                <form class="email-form" onsubmit="handleSubmit(event)">
+                    <input type="email" class="email-input" placeholder="Enter your email" required>
+                    <button type="submit" class="notify-btn">Notify me</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all teaser panels
+        document.querySelectorAll('.teaser-panel').forEach(panel => {
+            observer.observe(panel);
+        });
+
+        // Email form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('.email-input').value;
+
+            // Simple success feedback
+            const btn = event.target.querySelector('.notify-btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Thanks!';
+            btn.style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
+
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = 'linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%)';
+                event.target.reset();
+            }, 2000);
+        }
+
+        // Smooth scroll for scroll hint
+        document.querySelector('.scroll-hint').addEventListener('click', () => {
+            document.querySelector('#panel1').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+
+</html>
