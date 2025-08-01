@@ -48,31 +48,67 @@
             pointer-events: none;
         }
 
-        /* Abstract AI Agent Shadow */
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 20%;
-            right: 10%;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            opacity: 0;
-            transform: scale(0.5) rotate(0deg);
-            animation: revealAgent 2s ease-out 1s forwards;
-            pointer-events: none;
+
+
+        /* --- HERO BRAND --- */
+        .hero-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
         }
 
-        .logo {
+        .hero-logo-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 18px;
+            box-shadow: 0 0 32px 0 rgba(0, 255, 200, 0.12), 0 0 0 8px rgba(0, 255, 200, 0.04);
+            background: rgba(255, 255, 255, 0.02);
+            animation: floatLogo 3.5s ease-in-out infinite;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        .hero-logo-img:hover {
+            box-shadow: 0 0 48px 0 rgba(0, 255, 200, 0.22), 0 0 0 12px rgba(0, 255, 200, 0.08);
+            transform: scale(1.07) rotate(-2deg);
+        }
+
+        @keyframes floatLogo {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-12px) scale(1.04);
+            }
+        }
+
+        @keyframes floatElement {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-15px) scale(1.05);
+            }
+        }
+
+        .hero-logo-text {
             font-size: 4rem;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 2px 24px rgba(0, 255, 200, 0.08);
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1s ease-out 0.3s forwards;
@@ -82,11 +118,44 @@
             font-size: 1.5rem;
             font-weight: 400;
             color: #a0a0a0;
+            text-shadow: 0 0 20px rgba(0, 255, 200, 0.1);
             max-width: 600px;
             margin-bottom: 3rem;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1s ease-out 0.6s forwards;
+            position: relative;
+        }
+
+        /* Floating elements for tagline */
+        .tagline::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            right: -25px;
+            width: 18px;
+            height: 18px;
+            border-radius: 3px;
+            box-shadow: 0 0 5px 0 rgba(0, 255, 200, 0.04), 0 0 0 1px rgba(0, 255, 200, 0.02);
+            background: rgba(0, 255, 200, 0.02);
+            animation: floatElement 2.5s ease-in-out infinite 0.8s;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .tagline::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            width: 15px;
+            height: 15px;
+            border-radius: 2px;
+            box-shadow: 0 0 4px 0 rgba(0, 255, 200, 0.03), 0 0 0 1px rgba(0, 255, 200, 0.01);
+            background: rgba(0, 255, 200, 0.015);
+            animation: floatElement 3.2s ease-in-out infinite 1.2s;
+            pointer-events: none;
+            z-index: 1;
         }
 
         .scroll-hint {
@@ -101,7 +170,8 @@
         .scroll-hint::before {
             content: '↓';
             font-size: 1.5rem;
-            color: #666;
+            color: #00ffe7;
+            text-shadow: 0 0 10px rgba(0, 255, 200, 0.3);
         }
 
         /* Teaser Panels */
@@ -122,96 +192,50 @@
             position: relative;
         }
 
+        /* Floating green elements for teaser panels */
+        .teaser-panel::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            box-shadow: 0 0 24px 0 rgba(0, 255, 200, 0.15), 0 0 0 6px rgba(0, 255, 200, 0.06);
+            background: rgba(0, 255, 200, 0.08);
+            animation: floatElement 4s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .teaser-panel:nth-child(1)::after {
+            top: 20%;
+            right: 15%;
+            animation-delay: 0s;
+        }
+
+        .teaser-panel:nth-child(2)::after {
+            top: 25%;
+            left: 10%;
+            animation-delay: 0.5s;
+        }
+
+        .teaser-panel:nth-child(3)::after {
+            bottom: 30%;
+            right: 20%;
+            animation-delay: 1s;
+        }
+
+        .teaser-panel:nth-child(4)::after {
+            bottom: 25%;
+            left: 15%;
+            animation-delay: 1.5s;
+        }
+
         .teaser-panel.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Computer Shadow for Panel 1 */
-        .teaser-panel:nth-child(1)::before {
-            content: '';
-            position: absolute;
-            top: 15%;
-            left: 15%;
-            width: 150px;
-            height: 100px;
-            background: linear-gradient(45deg, rgba(255, 255, 255, 0.06) 0%, transparent 50%);
-            border-radius: 8px;
-            opacity: 0;
-            transform: translateX(-50px) scale(0.8);
-            transition: all 1s ease-out 0.3s;
-        }
 
-        .teaser-panel:nth-child(1).visible::before {
-            opacity: 1;
-            transform: translateX(0) scale(1);
-        }
-
-        /* Network Nodes Shadow for Panel 2 */
-        .teaser-panel:nth-child(2)::before {
-            content: '';
-            position: absolute;
-            top: 20%;
-            right: 20%;
-            width: 120px;
-            height: 120px;
-            background:
-                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.04) 0%, transparent 50%);
-            opacity: 0;
-            transform: scale(0.5) rotate(45deg);
-            transition: all 1s ease-out 0.3s;
-        }
-
-        .teaser-panel:nth-child(2).visible::before {
-            opacity: 1;
-            transform: scale(1) rotate(0deg);
-        }
-
-        /* Circuit Pattern Shadow for Panel 3 */
-        .teaser-panel:nth-child(3)::before {
-            content: '';
-            position: absolute;
-            bottom: 20%;
-            left: 10%;
-            width: 180px;
-            height: 80px;
-            background:
-                linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 20%, transparent 40%),
-                linear-gradient(90deg, transparent 60%, rgba(255, 255, 255, 0.05) 80%, transparent 100%),
-                linear-gradient(0deg, transparent 0%, rgba(255, 255, 255, 0.03) 50%, transparent 100%);
-            opacity: 0;
-            transform: translateY(30px) scale(0.7);
-            transition: all 1s ease-out 0.3s;
-        }
-
-        .teaser-panel:nth-child(3).visible::before {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        /* Floating Particles Shadow for Panel 4 */
-        .teaser-panel:nth-child(4)::before {
-            content: '';
-            position: absolute;
-            top: 30%;
-            right: 10%;
-            width: 100px;
-            height: 100px;
-            background:
-                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 80% 40%, rgba(255, 255, 255, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.06) 0%, transparent 40%);
-            opacity: 0;
-            transform: scale(0.3) rotate(-15deg);
-            transition: all 1s ease-out 0.3s;
-        }
-
-        .teaser-panel:nth-child(4).visible::before {
-            opacity: 1;
-            transform: scale(1) rotate(0deg);
-        }
 
         .teaser-content {
             max-width: 800px;
@@ -224,16 +248,35 @@
             font-weight: 600;
             letter-spacing: -0.02em;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ffffff 0%, #d0d0d0 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 50%, #d0d0d0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 255, 200, 0.15);
         }
 
         .teaser-subtitle {
             font-size: 1.25rem;
             color: #888;
             font-weight: 400;
+            position: relative;
+            text-shadow: 0 0 15px rgba(0, 255, 200, 0.08);
+        }
+
+        /* Floating elements for teaser subtitles */
+        .teaser-subtitle::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -30px;
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            box-shadow: 0 0 6px 0 rgba(0, 255, 200, 0.05), 0 0 0 1px rgba(0, 255, 200, 0.02);
+            background: rgba(0, 255, 200, 0.03);
+            animation: floatElement 3s ease-in-out infinite 0.3s;
+            pointer-events: none;
+            z-index: 1;
         }
 
         /* Final Section */
@@ -248,6 +291,7 @@
             position: relative;
         }
 
+        /* Floating green elements for final section */
         .final-section::before {
             content: '';
             position: absolute;
@@ -259,7 +303,7 @@
             pointer-events: none;
         }
 
-        /* Final AI Agent Cluster */
+        /* Multiple floating elements for final section */
         .final-section::after {
             content: '';
             position: absolute;
@@ -277,6 +321,47 @@
             pointer-events: none;
         }
 
+        .final-section .floating-element-1 {
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px 0 rgba(0, 255, 200, 0.12), 0 0 0 4px rgba(0, 255, 200, 0.05);
+            background: rgba(0, 255, 200, 0.06);
+            animation: floatElement 3.5s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .final-section .floating-element-2 {
+            position: absolute;
+            bottom: 20%;
+            right: 25%;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 16px 0 rgba(0, 255, 200, 0.1), 0 0 0 3px rgba(0, 255, 200, 0.04);
+            background: rgba(0, 255, 200, 0.05);
+            animation: floatElement 4.5s ease-in-out infinite 1s;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .final-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+
+
         .launching-soon {
             font-size: 2.5rem;
             font-weight: 600;
@@ -284,12 +369,67 @@
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1s ease-out 0.3s forwards;
+            position: relative;
+            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 25px rgba(0, 255, 200, 0.12);
+        }
+
+        /* Floating elements for launching soon text */
+        .launching-soon::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -35px;
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
+            box-shadow: 0 0 7px 0 rgba(0, 255, 200, 0.06), 0 0 0 2px rgba(0, 255, 200, 0.03);
+            background: rgba(0, 255, 200, 0.04);
+            animation: floatElement 2.8s ease-in-out infinite 0.4s;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .launching-soon::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            right: -30px;
+            width: 18px;
+            height: 18px;
+            border-radius: 3px;
+            box-shadow: 0 0 5px 0 rgba(0, 255, 200, 0.04), 0 0 0 1px rgba(0, 255, 200, 0.02);
+            background: rgba(0, 255, 200, 0.025);
+            animation: floatElement 3.6s ease-in-out infinite 0.9s;
+            pointer-events: none;
+            z-index: 1;
         }
 
         .email-capture {
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1s ease-out 0.6s forwards;
+            position: relative;
+        }
+
+        /* Floating elements for email capture */
+        .email-capture::before {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px 0 rgba(0, 255, 200, 0.08), 0 0 0 3px rgba(0, 255, 200, 0.04);
+            background: rgba(0, 255, 200, 0.05);
+            animation: floatElement 3.3s ease-in-out infinite 0.7s;
+            pointer-events: none;
+            z-index: 1;
         }
 
         .email-form {
@@ -308,12 +448,14 @@
             color: #ffffff;
             font-size: 1rem;
             transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(0, 255, 200, 0.05);
         }
 
         .email-input:focus {
             outline: none;
-            border-color: #666;
+            border-color: #00ffe7;
             background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 15px rgba(0, 255, 200, 0.1);
         }
 
         .email-input::placeholder {
@@ -322,7 +464,7 @@
 
         .notify-btn {
             padding: 1rem 2rem;
-            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 100%);
             color: #000000;
             border: none;
             border-radius: 8px;
@@ -330,11 +472,55 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-shadow: 0 0 8px rgba(0, 255, 200, 0.1);
         }
 
         .notify-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 255, 200, 0.2);
+        }
+
+        /* Footer floating elements */
+        .site-footer {
+            position: relative;
+            padding: 2rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(0, 255, 200, 0.1);
+        }
+
+        .site-footer p {
+            color: #a0a0a0;
+            text-shadow: 0 0 12px rgba(0, 255, 200, 0.06);
+        }
+
+        .site-footer::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 15%;
+            width: 35px;
+            height: 35px;
+            border-radius: 6px;
+            box-shadow: 0 0 12px 0 rgba(0, 255, 200, 0.08), 0 0 0 2px rgba(0, 255, 200, 0.03);
+            background: rgba(0, 255, 200, 0.04);
+            animation: floatElement 5s ease-in-out infinite 0.5s;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .site-footer::after {
+            content: '';
+            position: absolute;
+            bottom: 30%;
+            right: 20%;
+            width: 25px;
+            height: 25px;
+            border-radius: 4px;
+            box-shadow: 0 0 8px 0 rgba(0, 255, 200, 0.06), 0 0 0 1px rgba(0, 255, 200, 0.02);
+            background: rgba(0, 255, 200, 0.03);
+            animation: floatElement 4s ease-in-out infinite 1.5s;
+            pointer-events: none;
+            z-index: 1;
         }
 
         /* Animations */
@@ -370,22 +556,24 @@
             }
         }
 
-        @keyframes revealAgent {
-            to {
-                opacity: 1;
-                transform: scale(1) rotate(360deg);
-            }
-        }
 
-        @keyframes revealFinalAgent {
-            to {
-                opacity: 1;
-                transform: translateX(-50%) scale(1);
-            }
-        }
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .hero-brand {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-logo-img {
+                width: 64px;
+                height: 64px;
+            }
+
+            .hero-logo-text {
+                font-size: 2.2rem;
+            }
+
             .logo {
                 font-size: 3rem;
             }
@@ -410,10 +598,18 @@
                 padding: 0 1rem;
             }
 
-            /* Hide shadows on mobile for cleaner look */
-            .hero::after,
-            .teaser-panel::before,
-            .final-section::after {
+            /* Hide floating elements on mobile for cleaner look */
+            .teaser-panel::after,
+            .final-section .floating-element-1,
+            .final-section .floating-element-2,
+            .tagline::before,
+            .tagline::after,
+            .teaser-subtitle::before,
+            .launching-soon::before,
+            .launching-soon::after,
+            .email-capture::before,
+            .site-footer::before,
+            .site-footer::after {
                 display: none;
             }
         }
@@ -429,8 +625,11 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1 class="logo">AgentBase</h1>
-            <p class="tagline">Create agents that use computers — so you don't have to.</p>
+            <div class="hero-brand">
+                <img src="assets/logo.png" alt="AgentBase Logo" class="hero-logo-img">
+                <span class="hero-logo-text">AgentBase</span>
+            </div>
+            <p class="tagline">Create agents that use computers, so you don’t have to.</p>
         </div>
         <div class="scroll-hint"></div>
     </section>
@@ -454,7 +653,7 @@
 
             <div class="teaser-panel" id="panel3">
                 <div class="teaser-content">
-                    <h2 class="teaser-title">Bring your own LLMs, tools, and apps.</h2>
+                    <h2 class="teaser-title">Bring your own LLMs, tools, and&nbsp;apps.</h2>
                     <p class="teaser-subtitle">Extensible by design.</p>
                 </div>
             </div>
@@ -470,6 +669,8 @@
 
     <!-- Final Section -->
     <section class="final-section">
+        <div class="floating-element-1"></div>
+        <div class="floating-element-2"></div>
         <div class="container">
             <h2 class="launching-soon">Launching soon.</h2>
             <div class="email-capture">
@@ -480,7 +681,11 @@
             </div>
         </div>
     </section>
-
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> AgentBase. All rights reserved.</p>
+        </div>
+    </footer>
     <script>
         // Intersection Observer for scroll animations
         const observerOptions = {
