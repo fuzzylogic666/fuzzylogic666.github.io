@@ -161,6 +161,17 @@
             z-index: 1;
         }
 
+        .subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: #888;
+            max-width: 700px;
+            margin: 1.5rem auto 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.8s forwards;
+        }
+
         .scroll-hint {
             position: absolute;
             bottom: 2rem;
@@ -411,6 +422,16 @@
             z-index: 1;
         }
 
+        .launch-description {
+            font-size: 1.1rem;
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out 0.4s forwards;
+        }
+
         .email-capture {
             opacity: 0;
             transform: translateY(30px);
@@ -494,6 +515,12 @@
         .site-footer p {
             color: #a0a0a0;
             text-shadow: 0 0 12px rgba(0, 255, 200, 0.06);
+        }
+
+        .preview-note {
+            font-size: 0.9rem;
+            color: #666 !important;
+            margin-bottom: 0.5rem !important;
         }
 
         .site-footer::before {
@@ -628,6 +655,14 @@
             bottom: 24px;
             right: 24px;
             z-index: 9999;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease-out;
+        }
+
+        .feedback-float.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Make widget wider by sizing its container */
@@ -666,6 +701,7 @@
                 <span class="hero-logo-text">AgentBase</span>
             </div>
             <p class="tagline">Create agents that use computers, so you don’t have to.</p>
+            <p class="subtitle">We're building the infrastructure to make AI agents that can interact with any software. Join our waitlist to be notified when we launch.</p>
         </div>
         <div class="scroll-hint"></div>
     </section>
@@ -708,7 +744,8 @@
         <div class="floating-element-1"></div>
         <div class="floating-element-2"></div>
         <div class="container">
-            <h2 class="launching-soon">Launching soon.</h2>
+            <h2 class="launching-soon">Coming Q1 2025.</h2>
+            <p class="launch-description">We're in active development. Join our waitlist to get early access and updates on our progress.</p>
             <div class="email-capture">
                 <form class="email-form" onsubmit="handleSubmit(event)">
                     <input type="email" class="email-input" placeholder="Enter your email" required>
@@ -719,6 +756,7 @@
     </section>
     <footer class="site-footer">
         <div class="container">
+            <p class="preview-note">This is a preview of our upcoming platform. Features and design may change.</p>
             <p>&copy; <span id="year"></span> AgentBase. All rights reserved.</p>
         </div>
     </footer>
@@ -783,7 +821,7 @@
             apiKey: 'widget_mf8m9v59_l23qkqf07sf',
             apiUrl: 'https://jedbptsmqiiamizbooiz.supabase.co/functions/v1/feedback',
            customization: {
-        title: 'How can we improve?',
+        title: 'Help us improve this preview',
         layout: 'vertical',
         starRating: {
           maxStars: 5,
@@ -791,11 +829,11 @@
           labels: ['Poor', 'Fair', 'Good', 'Very Good', 'Excellent']
         },
         textInput: {
-          placeholder: 'Tell us more about your experience...',
+          placeholder: 'What would make this landing page more helpful? (Optional)',
           maxLength: 500
         },
         submitButton: {
-          text: 'Send Feedback'
+          text: 'Share Feedback'
         }
       }
         });
@@ -806,6 +844,28 @@
         closeBtn.addEventListener('click', () => {
             floatEl.style.display = 'none';
         });
+
+        // Show feedback widget after user has been on page for 15 seconds and scrolled
+        let hasScrolled = false;
+        let timeSpent = 0;
+
+        window.addEventListener('scroll', () => {
+            hasScrolled = true;
+        });
+
+        setTimeout(() => {
+            timeSpent = 15;
+            if (hasScrolled) {
+                floatEl.classList.add('show');
+            }
+        }, 15000);
+
+        // Alternative: show after 30 seconds regardless of scroll
+        setTimeout(() => {
+            if (!floatEl.classList.contains('show')) {
+                floatEl.classList.add('show');
+            }
+        }, 30000);
     </script>
 </body>
 
