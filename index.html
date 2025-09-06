@@ -621,6 +621,199 @@
         html {
             scroll-behavior: smooth;
         }
+
+        /* Header Navigation */
+        .header-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 200, 0.1);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .sign-in-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            border: 1px solid rgba(0, 255, 200, 0.3);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .sign-in-btn:hover {
+            background: rgba(0, 255, 200, 0.1);
+            border-color: rgba(0, 255, 200, 0.5);
+            box-shadow: 0 4px 15px rgba(0, 255, 200, 0.1);
+        }
+
+        /* Login Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .login-modal {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 1px solid rgba(0, 255, 200, 0.2);
+            border-radius: 12px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            transform: translateY(30px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .login-modal {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 30px;
+            height: 30px;
+            border: none;
+            background: none;
+            color: #888;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #ffffff;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal-subtitle {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .modal-cta {
+            background: linear-gradient(135deg, #00ffe7 0%, #ffffff 100%);
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .modal-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 255, 200, 0.3);
+        }
+
+        .modal-footer {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 1.5rem;
+        }
+
+        /* Adjust hero section for header */
+        .hero {
+            padding-top: 80px;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+            
+            .nav-logo {
+                font-size: 1.2rem;
+            }
+            
+            .sign-in-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+            
+            .login-modal {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .modal-title {
+                font-size: 1.5rem;
+            }
+        }
         
         /* Feedback widget floating container */
         .feedback-float {
@@ -658,6 +851,36 @@
 </head>
 
 <body>
+    <!-- Header Navigation -->
+    <nav class="header-nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="assets/logo.png" alt="AgentBase Logo">
+                AgentBase
+            </a>
+            <div class="nav-actions">
+                <button class="sign-in-btn" onclick="openLoginModal()">Sign In</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="login-modal">
+            <button class="modal-close" onclick="closeLoginModal()">&times;</button>
+            <h2 class="modal-title">Coming Soon!</h2>
+            <p class="modal-subtitle">
+                AgentBase is launching soon. We're putting the finishing touches on our platform that will let you create agents that use computers.
+            </p>
+            <p class="modal-subtitle">
+                Join our waitlist to be the first to know when we launch and get early access.
+            </p>
+            <button class="modal-cta" onclick="scrollToSignup()">Join Waitlist</button>
+            <div class="modal-footer">
+                We'll notify you as soon as AgentBase is ready!
+            </div>
+        </div>
+    </div>
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
@@ -772,6 +995,45 @@
                 behavior: 'smooth'
             });
         });
+
+        // Login Modal Functions
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function scrollToSignup() {
+            closeLoginModal();
+            setTimeout(() => {
+                document.querySelector('.email-capture').scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Focus the email input
+                document.querySelector('.email-input').focus();
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('loginModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('loginModal')) {
+                closeLoginModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLoginModal();
+            }
+        });
+
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
     
     <!-- Initialize Refinely Feedback Widget -->
