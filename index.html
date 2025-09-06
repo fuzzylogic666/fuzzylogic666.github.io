@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <link rel="icon" href="assets/logo.png" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgentBase — Create agents that use computers</title>
+    <title>AgentBase — Build AI assistants that automate tasks</title>
     <style>
         * {
             margin: 0;
@@ -175,6 +175,77 @@
             font-size: 1.5rem;
             color: #00ffe7;
             text-shadow: 0 0 10px rgba(0, 255, 200, 0.3);
+        }
+
+        /* What is AgentBase Section */
+        .what-section {
+            padding: 8rem 0;
+            background: rgba(255, 255, 255, 0.01);
+            border-top: 1px solid rgba(0, 255, 200, 0.05);
+            border-bottom: 1px solid rgba(0, 255, 200, 0.05);
+        }
+
+        .what-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .what-title {
+            font-size: 3rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 25px rgba(0, 255, 200, 0.12);
+        }
+
+        .what-description {
+            font-size: 1.25rem;
+            color: #b0b0b0;
+            line-height: 1.7;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .what-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .example-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 255, 200, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .example-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(0, 255, 200, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .example-item h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .example-item p {
+            color: #888;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         /* Teaser Panels */
@@ -585,6 +656,23 @@
                 font-size: 1.25rem;
             }
 
+            .what-title {
+                font-size: 2.2rem;
+            }
+
+            .what-description {
+                font-size: 1.1rem;
+            }
+
+            .what-examples {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .example-item {
+                padding: 1.5rem;
+            }
+
             .teaser-title {
                 font-size: 2.5rem;
             }
@@ -665,9 +753,37 @@
                 <img src="assets/logo.png" alt="AgentBase Logo" class="hero-logo-img">
                 <span class="hero-logo-text">AgentBase</span>
             </div>
-            <p class="tagline">Create agents that use computers, so you don’t have to.</p>
+            <p class="tagline">Build AI assistants that automate tasks by controlling software, websites, and apps.</p>
         </div>
         <div class="scroll-hint"></div>
+    </section>
+
+    <!-- What is AgentBase Section -->
+    <section class="what-section">
+        <div class="container">
+            <div class="what-content">
+                <h2 class="what-title">What is AgentBase?</h2>
+                <p class="what-description">
+                    AgentBase lets you build AI assistants that can actually use software applications, browse websites, 
+                    and perform tasks on computers—just like a human would. Instead of just chatting, these agents 
+                    can click buttons, fill forms, navigate apps, and complete real work for you.
+                </p>
+                <div class="what-examples">
+                    <div class="example-item">
+                        <h3>📊 Data Entry</h3>
+                        <p>Agents that automatically update spreadsheets, CRM systems, and databases</p>
+                    </div>
+                    <div class="example-item">
+                        <h3>🔍 Research</h3>
+                        <p>Gather information from websites, compare prices, or monitor competitors</p>
+                    </div>
+                    <div class="example-item">
+                        <h3>📧 Administration</h3>
+                        <p>Schedule meetings, send follow-ups, and manage routine business tasks</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Teaser Panels -->
@@ -689,8 +805,8 @@
 
             <div class="teaser-panel" id="panel3">
                 <div class="teaser-content">
-                    <h2 class="teaser-title">Bring your own LLMs, tools, and&nbsp;apps.</h2>
-                    <p class="teaser-subtitle">Extensible by design.</p>
+                    <h2 class="teaser-title">Bring your own AI models, tools, and&nbsp;apps.</h2>
+                    <p class="teaser-subtitle">Extensible by design. Use any AI provider or custom tools.</p>
                 </div>
             </div>
 
