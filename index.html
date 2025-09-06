@@ -496,6 +496,116 @@
             text-shadow: 0 0 12px rgba(0, 255, 200, 0.06);
         }
 
+        /* Login/Access Section */
+        .login-section {
+            padding: 6rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-top: 1px solid rgba(0, 255, 200, 0.1);
+            border-bottom: 1px solid rgba(0, 255, 200, 0.1);
+            text-align: center;
+            position: relative;
+        }
+
+        .login-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 0 2px 20px rgba(0, 255, 200, 0.1);
+        }
+
+        .login-status {
+            font-size: 1.2rem;
+            color: #a0a0a0;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .login-coming-soon {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 255, 231, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border: 1px solid rgba(0, 255, 200, 0.3);
+            border-radius: 8px;
+            color: #00ffe7;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .login-coming-soon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 255, 200, 0.15);
+            background: linear-gradient(135deg, rgba(0, 255, 231, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 4rem 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-title {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #ffffff;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 255, 200, 0.1);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(0, 255, 200, 0.2);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #ffffff;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: #00ffe7;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: #a0a0a0;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
         .site-footer::before {
             content: '';
             position: absolute;
@@ -703,6 +813,41 @@
         </div>
     </section>
 
+    <!-- Login/Access Section -->
+    <section class="login-section">
+        <div class="container">
+            <h2 class="login-title">Looking to Login?</h2>
+            <p class="login-status">AgentBase is currently in development and not yet available for public access.</p>
+            <div class="login-coming-soon">Login Available Soon</div>
+            <p class="login-status">Join our waitlist below to be notified when AgentBase launches and login becomes available.</p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="faq-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">How do I login to AgentBase?</div>
+                <div class="faq-answer">
+                    AgentBase is currently in development and not yet publicly available. Login functionality will be available when the platform launches. Please join our email list below to be notified when AgentBase becomes available for early access.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">When will AgentBase be available?</div>
+                <div class="faq-answer">
+                    We're working hard to bring AgentBase to market soon. Join our waitlist to be among the first to know when we launch and gain early access to the platform.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">How will I know when I can create an account?</div>
+                <div class="faq-answer">
+                    We'll send email notifications to everyone on our waitlist when AgentBase launches. You'll receive instructions on how to create your account and start building agents.
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Final Section -->
     <section class="final-section">
         <div class="floating-element-1"></div>
@@ -764,6 +909,22 @@
                 btn.style.background = 'linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%)';
                 event.target.reset();
             }, 2000);
+        }
+
+        // FAQ toggle functionality
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't already active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
         }
 
         // Smooth scroll for scroll hint
