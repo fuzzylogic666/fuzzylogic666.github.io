@@ -9,6 +9,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgentBase — Create agents that use computers</title>
     <style>
+        :root {
+            /* Dark theme colors (default) */
+            --bg-primary: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-tertiary: #888888;
+            --accent-primary: #00ffe7;
+            --accent-secondary: rgba(0, 255, 200, 0.12);
+            --accent-tertiary: rgba(0, 255, 200, 0.04);
+            --surface-primary: rgba(255, 255, 255, 0.02);
+            --surface-secondary: rgba(0, 255, 200, 0.02);
+            --surface-tertiary: rgba(0, 255, 200, 0.03);
+            --shadow-primary: rgba(0, 255, 200, 0.08);
+            --shadow-secondary: rgba(0, 255, 200, 0.15);
+            --input-bg: rgba(255, 255, 255, 0.05);
+            --input-border: #333333;
+            --input-text: #ffffff;
+            --input-placeholder: #666666;
+            --button-bg: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            --button-text: #000000;
+        }
+
+        [data-theme="light"] {
+            /* Light theme colors */
+            --bg-primary: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%);
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --text-tertiary: #888888;
+            --accent-primary: #00b8cc;
+            --accent-secondary: rgba(0, 184, 204, 0.12);
+            --accent-tertiary: rgba(0, 184, 204, 0.04);
+            --surface-primary: rgba(0, 0, 0, 0.02);
+            --surface-secondary: rgba(0, 184, 204, 0.02);
+            --surface-tertiary: rgba(0, 184, 204, 0.03);
+            --shadow-primary: rgba(0, 184, 204, 0.08);
+            --shadow-secondary: rgba(0, 184, 204, 0.15);
+            --input-bg: rgba(0, 0, 0, 0.05);
+            --input-border: #e0e0e0;
+            --input-text: #1a1a1a;
+            --input-placeholder: #999999;
+            --button-bg: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+            --button-text: #ffffff;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -17,16 +61,49 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
-            color: #ffffff;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--surface-primary);
+            border: 1px solid var(--accent-tertiary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 2px 10px var(--shadow-primary);
+        }
+
+        .theme-toggle:hover {
+            background: var(--surface-secondary);
+            box-shadow: 0 4px 20px var(--shadow-secondary);
+            transform: scale(1.05);
+        }
+
+        .theme-toggle svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-primary);
+            transition: all 0.3s ease;
         }
 
         /* Hero Section */
@@ -47,7 +124,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+            background: radial-gradient(circle at 50% 50%, var(--surface-primary) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -68,14 +145,14 @@
             width: 90px;
             height: 90px;
             border-radius: 18px;
-            box-shadow: 0 0 32px 0 rgba(0, 255, 200, 0.12), 0 0 0 8px rgba(0, 255, 200, 0.04);
-            background: rgba(255, 255, 255, 0.02);
+            box-shadow: 0 0 32px 0 var(--accent-secondary), 0 0 0 8px var(--accent-tertiary);
+            background: var(--surface-primary);
             animation: floatLogo 3.5s ease-in-out infinite;
             transition: box-shadow 0.3s, transform 0.3s;
         }
 
         .hero-logo-img:hover {
-            box-shadow: 0 0 48px 0 rgba(0, 255, 200, 0.22), 0 0 0 12px rgba(0, 255, 200, 0.08);
+            box-shadow: 0 0 48px 0 var(--shadow-secondary), 0 0 0 12px var(--shadow-primary);
             transform: scale(1.07) rotate(-2deg);
         }
 
@@ -107,11 +184,11 @@
             font-size: 4rem;
             font-weight: 800;
             letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 100%);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 2px 24px rgba(0, 255, 200, 0.08);
+            text-shadow: 0 2px 24px var(--shadow-primary);
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1s ease-out 0.3s forwards;
@@ -120,8 +197,8 @@
         .tagline {
             font-size: 1.5rem;
             font-weight: 400;
-            color: #a0a0a0;
-            text-shadow: 0 0 20px rgba(0, 255, 200, 0.1);
+            color: var(--text-secondary);
+            text-shadow: 0 0 20px var(--shadow-primary);
             max-width: 600px;
             margin-bottom: 3rem;
             opacity: 0;
@@ -139,8 +216,8 @@
             width: 18px;
             height: 18px;
             border-radius: 3px;
-            box-shadow: 0 0 5px 0 rgba(0, 255, 200, 0.04), 0 0 0 1px rgba(0, 255, 200, 0.02);
-            background: rgba(0, 255, 200, 0.02);
+            box-shadow: 0 0 5px 0 var(--accent-tertiary), 0 0 0 1px var(--accent-tertiary);
+            background: var(--surface-secondary);
             animation: floatElement 2.5s ease-in-out infinite 0.8s;
             pointer-events: none;
             z-index: 1;
@@ -154,8 +231,8 @@
             width: 15px;
             height: 15px;
             border-radius: 2px;
-            box-shadow: 0 0 4px 0 rgba(0, 255, 200, 0.03), 0 0 0 1px rgba(0, 255, 200, 0.01);
-            background: rgba(0, 255, 200, 0.015);
+            box-shadow: 0 0 4px 0 var(--accent-tertiary), 0 0 0 1px var(--accent-tertiary);
+            background: var(--surface-secondary);
             animation: floatElement 3.2s ease-in-out infinite 1.2s;
             pointer-events: none;
             z-index: 1;
@@ -173,8 +250,8 @@
         .scroll-hint::before {
             content: '↓';
             font-size: 1.5rem;
-            color: #00ffe7;
-            text-shadow: 0 0 10px rgba(0, 255, 200, 0.3);
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px var(--shadow-secondary);
         }
 
         /* Teaser Panels */
@@ -202,8 +279,8 @@
             width: 60px;
             height: 60px;
             border-radius: 12px;
-            box-shadow: 0 0 24px 0 rgba(0, 255, 200, 0.15), 0 0 0 6px rgba(0, 255, 200, 0.06);
-            background: rgba(0, 255, 200, 0.08);
+            box-shadow: 0 0 24px 0 var(--shadow-secondary), 0 0 0 6px var(--shadow-primary);
+            background: var(--shadow-primary);
             animation: floatElement 4s ease-in-out infinite;
             pointer-events: none;
             z-index: 1;
@@ -251,19 +328,19 @@
             font-weight: 600;
             letter-spacing: -0.02em;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 50%, #d0d0d0 100%);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 50%, var(--text-secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 30px rgba(0, 255, 200, 0.15);
+            text-shadow: 0 0 30px var(--shadow-secondary);
         }
 
         .teaser-subtitle {
             font-size: 1.25rem;
-            color: #888;
+            color: var(--text-tertiary);
             font-weight: 400;
             position: relative;
-            text-shadow: 0 0 15px rgba(0, 255, 200, 0.08);
+            text-shadow: 0 0 15px var(--shadow-primary);
         }
 
         /* Floating elements for teaser subtitles */
@@ -275,8 +352,8 @@
             width: 20px;
             height: 20px;
             border-radius: 3px;
-            box-shadow: 0 0 6px 0 rgba(0, 255, 200, 0.05), 0 0 0 1px rgba(0, 255, 200, 0.02);
-            background: rgba(0, 255, 200, 0.03);
+            box-shadow: 0 0 6px 0 var(--accent-tertiary), 0 0 0 1px var(--accent-tertiary);
+            background: var(--surface-tertiary);
             animation: floatElement 3s ease-in-out infinite 0.3s;
             pointer-events: none;
             z-index: 1;
@@ -331,8 +408,8 @@
             width: 50px;
             height: 50px;
             border-radius: 10px;
-            box-shadow: 0 0 20px 0 rgba(0, 255, 200, 0.12), 0 0 0 4px rgba(0, 255, 200, 0.05);
-            background: rgba(0, 255, 200, 0.06);
+            box-shadow: 0 0 20px 0 var(--accent-secondary), 0 0 0 4px var(--accent-tertiary);
+            background: var(--shadow-primary);
             animation: floatElement 3.5s ease-in-out infinite;
             pointer-events: none;
             z-index: 1;
@@ -345,8 +422,8 @@
             width: 40px;
             height: 40px;
             border-radius: 8px;
-            box-shadow: 0 0 16px 0 rgba(0, 255, 200, 0.1), 0 0 0 3px rgba(0, 255, 200, 0.04);
-            background: rgba(0, 255, 200, 0.05);
+            box-shadow: 0 0 16px 0 var(--accent-secondary), 0 0 0 3px var(--accent-tertiary);
+            background: var(--surface-tertiary);
             animation: floatElement 4.5s ease-in-out infinite 1s;
             pointer-events: none;
             z-index: 1;
@@ -373,11 +450,11 @@
             transform: translateY(30px);
             animation: fadeInUp 1s ease-out 0.3s forwards;
             position: relative;
-            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 100%);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 25px rgba(0, 255, 200, 0.12);
+            text-shadow: 0 0 25px var(--accent-secondary);
         }
 
         /* Floating elements for launching soon text */
@@ -389,8 +466,8 @@
             width: 22px;
             height: 22px;
             border-radius: 4px;
-            box-shadow: 0 0 7px 0 rgba(0, 255, 200, 0.06), 0 0 0 2px rgba(0, 255, 200, 0.03);
-            background: rgba(0, 255, 200, 0.04);
+            box-shadow: 0 0 7px 0 var(--shadow-primary), 0 0 0 2px var(--accent-tertiary);
+            background: var(--accent-tertiary);
             animation: floatElement 2.8s ease-in-out infinite 0.4s;
             pointer-events: none;
             z-index: 1;
@@ -404,8 +481,8 @@
             width: 18px;
             height: 18px;
             border-radius: 3px;
-            box-shadow: 0 0 5px 0 rgba(0, 255, 200, 0.04), 0 0 0 1px rgba(0, 255, 200, 0.02);
-            background: rgba(0, 255, 200, 0.025);
+            box-shadow: 0 0 5px 0 var(--accent-tertiary), 0 0 0 1px var(--accent-tertiary);
+            background: var(--surface-secondary);
             animation: floatElement 3.6s ease-in-out infinite 0.9s;
             pointer-events: none;
             z-index: 1;
@@ -428,8 +505,8 @@
             width: 30px;
             height: 30px;
             border-radius: 5px;
-            box-shadow: 0 0 10px 0 rgba(0, 255, 200, 0.08), 0 0 0 3px rgba(0, 255, 200, 0.04);
-            background: rgba(0, 255, 200, 0.05);
+            box-shadow: 0 0 10px 0 var(--shadow-primary), 0 0 0 3px var(--accent-tertiary);
+            background: var(--surface-tertiary);
             animation: floatElement 3.3s ease-in-out infinite 0.7s;
             pointer-events: none;
             z-index: 1;
@@ -445,55 +522,55 @@
         .email-input {
             flex: 1;
             padding: 1rem 1.5rem;
-            border: 1px solid #333;
+            border: 1px solid var(--input-border);
             border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
+            background: var(--input-bg);
+            color: var(--input-text);
             font-size: 1rem;
             transition: all 0.3s ease;
-            text-shadow: 0 0 10px rgba(0, 255, 200, 0.05);
+            text-shadow: 0 0 10px var(--shadow-primary);
         }
 
         .email-input:focus {
             outline: none;
-            border-color: #00ffe7;
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 15px rgba(0, 255, 200, 0.1);
+            border-color: var(--accent-primary);
+            background: var(--surface-primary);
+            box-shadow: 0 0 15px var(--shadow-secondary);
         }
 
         .email-input::placeholder {
-            color: #666;
+            color: var(--input-placeholder);
         }
 
         .notify-btn {
             padding: 1rem 2rem;
-            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 100%);
-            color: #000000;
+            background: var(--button-bg);
+            color: var(--button-text);
             border: none;
             border-radius: 8px;
             font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-shadow: 0 0 8px rgba(0, 255, 200, 0.1);
+            text-shadow: 0 0 8px var(--shadow-primary);
         }
 
         .notify-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 255, 200, 0.2);
+            box-shadow: 0 8px 25px var(--shadow-secondary);
         }
 
         /* Footer floating elements */
         .site-footer {
             position: relative;
             padding: 2rem 0;
-            background: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid rgba(0, 255, 200, 0.1);
+            background: var(--surface-primary);
+            border-top: 1px solid var(--shadow-primary);
         }
 
         .site-footer p {
-            color: #a0a0a0;
-            text-shadow: 0 0 12px rgba(0, 255, 200, 0.06);
+            color: var(--text-secondary);
+            text-shadow: 0 0 12px var(--shadow-primary);
         }
 
         .site-footer::before {
@@ -504,8 +581,8 @@
             width: 35px;
             height: 35px;
             border-radius: 6px;
-            box-shadow: 0 0 12px 0 rgba(0, 255, 200, 0.08), 0 0 0 2px rgba(0, 255, 200, 0.03);
-            background: rgba(0, 255, 200, 0.04);
+            box-shadow: 0 0 12px 0 var(--shadow-primary), 0 0 0 2px var(--accent-tertiary);
+            background: var(--accent-tertiary);
             animation: floatElement 5s ease-in-out infinite 0.5s;
             pointer-events: none;
             z-index: 1;
@@ -519,8 +596,8 @@
             width: 25px;
             height: 25px;
             border-radius: 4px;
-            box-shadow: 0 0 8px 0 rgba(0, 255, 200, 0.06), 0 0 0 1px rgba(0, 255, 200, 0.02);
-            background: rgba(0, 255, 200, 0.03);
+            box-shadow: 0 0 8px 0 var(--shadow-primary), 0 0 0 1px var(--accent-tertiary);
+            background: var(--surface-tertiary);
             animation: floatElement 4s ease-in-out infinite 1.5s;
             pointer-events: none;
             z-index: 1;
@@ -625,6 +702,17 @@
 </head>
 
 <body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg class="sun-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="m12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 6.34l1.41-1.41m11.32 11.32l1.41 1.41"/>
+        </svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" style="display: none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </button>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
@@ -690,6 +778,51 @@
         </div>
     </footer>
     <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Toggle icon visibility
+            const sunIcon = document.querySelector('.sun-icon');
+            const moonIcon = document.querySelector('.moon-icon');
+            
+            if (newTheme === 'light') {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            } else {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+        }
+
+        // Initialize theme on page load
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            const theme = savedTheme !== 'dark' ? savedTheme : systemTheme;
+            
+            document.documentElement.setAttribute('data-theme', theme);
+            
+            // Set initial icon visibility
+            const sunIcon = document.querySelector('.sun-icon');
+            const moonIcon = document.querySelector('.moon-icon');
+            
+            if (theme === 'light') {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            } else {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+        }
+
+        // Initialize theme when DOM is ready
+        document.addEventListener('DOMContentLoaded', initTheme);
+
         // Intersection Observer for scroll animations
         const observerOptions = {
             threshold: 0.1,
