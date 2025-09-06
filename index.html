@@ -483,6 +483,207 @@
             box-shadow: 0 8px 25px rgba(0, 255, 200, 0.2);
         }
 
+        /* Feedback Section */
+        .feedback-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.9) 100%);
+            border-top: 1px solid rgba(0, 255, 200, 0.1);
+            position: relative;
+        }
+
+        .feedback-widget {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 255, 200, 0.15);
+            border-radius: 12px;
+            padding: 3rem;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .feedback-widget::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(0, 255, 200, 0.05) 0%, transparent 70%);
+            border-radius: 12px;
+            pointer-events: none;
+        }
+
+        .feedback-title {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feedback-subtitle {
+            text-align: center;
+            color: #a0a0a0;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feedback-form {
+            position: relative;
+            z-index: 2;
+        }
+
+        .rating-container {
+            margin-bottom: 2rem;
+        }
+
+        .rating-label {
+            display: block;
+            color: #ffffff;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            direction: rtl;
+        }
+
+        .star-rating input[type="radio"] {
+            display: none;
+        }
+
+        .star-rating label {
+            font-size: 2rem;
+            color: #444;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-shadow: 0 0 10px rgba(0, 255, 200, 0.1);
+        }
+
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input[type="radio"]:checked ~ label {
+            color: #00ffe7;
+            text-shadow: 0 0 15px rgba(0, 255, 200, 0.3);
+            transform: scale(1.1);
+        }
+
+        .feedback-text-container {
+            margin-bottom: 2rem;
+        }
+
+        .feedback-text-label {
+            display: block;
+            color: #ffffff;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .feedback-hint {
+            display: block;
+            font-size: 0.9rem;
+            color: #888;
+            font-weight: 400;
+            margin-top: 0.25rem;
+        }
+
+        .feedback-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 1rem;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .feedback-textarea:focus {
+            outline: none;
+            border-color: #00ffe7;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 15px rgba(0, 255, 200, 0.1);
+        }
+
+        .feedback-textarea::placeholder {
+            color: #666;
+        }
+
+        .char-counter {
+            font-size: 0.85rem;
+            color: #888;
+            text-align: right;
+            margin-top: 0.5rem;
+        }
+
+        .feedback-submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 100%);
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .feedback-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 255, 200, 0.2);
+        }
+
+        .feedback-submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .feedback-message {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .feedback-message.success {
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            color: #4CAF50;
+        }
+
+        .feedback-message.error {
+            background: rgba(244, 67, 54, 0.1);
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            color: #f44336;
+        }
+
+        .message-icon {
+            font-size: 1.2rem;
+        }
+
         /* Footer floating elements */
         .site-footer {
             position: relative;
@@ -601,6 +802,37 @@
                 padding: 0 1rem;
             }
 
+            /* Feedback widget mobile styles */
+            .feedback-section {
+                padding: 4rem 0;
+            }
+
+            .feedback-widget {
+                padding: 2rem 1.5rem;
+                margin: 0 1rem;
+            }
+
+            .feedback-title {
+                font-size: 1.5rem;
+            }
+
+            .star-rating {
+                gap: 0.25rem;
+            }
+
+            .star-rating label {
+                font-size: 1.5rem;
+            }
+
+            .feedback-textarea {
+                min-height: 100px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+
+            .char-counter {
+                font-size: 0.8rem;
+            }
+
             /* Hide floating elements on mobile for cleaner look */
             .teaser-panel::after,
             .final-section .floating-element-1,
@@ -684,6 +916,64 @@
             </div>
         </div>
     </section>
+
+    <!-- Feedback Section -->
+    <section class="feedback-section">
+        <div class="container">
+            <div class="feedback-widget">
+                <h3 class="feedback-title">Share Your Feedback</h3>
+                <p class="feedback-subtitle">Help us improve AgentBase with your thoughts and suggestions</p>
+                
+                <form class="feedback-form" onsubmit="handleFeedbackSubmit(event)">
+                    <div class="rating-container">
+                        <label class="rating-label">How would you rate your experience?</label>
+                        <div class="star-rating">
+                            <input type="radio" id="star5" name="rating" value="5" required>
+                            <label for="star5" title="Excellent">★</label>
+                            <input type="radio" id="star4" name="rating" value="4" required>
+                            <label for="star4" title="Good">★</label>
+                            <input type="radio" id="star3" name="rating" value="3" required>
+                            <label for="star3" title="Average">★</label>
+                            <input type="radio" id="star2" name="rating" value="2" required>
+                            <label for="star2" title="Poor">★</label>
+                            <input type="radio" id="star1" name="rating" value="1" required>
+                            <label for="star1" title="Very Poor">★</label>
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-text-container">
+                        <label for="feedback-text" class="feedback-text-label">
+                            Tell us more about your experience
+                            <span class="feedback-hint">Please provide specific details about what you liked, disliked, or suggestions for improvement (minimum 10 characters)</span>
+                        </label>
+                        <textarea 
+                            id="feedback-text" 
+                            name="feedback" 
+                            class="feedback-textarea" 
+                            placeholder="Share your detailed thoughts here... What specific features interest you? What would make AgentBase more valuable for your use case?"
+                            minlength="10"
+                            required
+                        ></textarea>
+                        <div class="char-counter">
+                            <span id="char-count">0</span>/10 minimum characters
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="feedback-submit-btn">Submit Feedback</button>
+                </form>
+                
+                <div id="feedback-success" class="feedback-message success" style="display: none;">
+                    <span class="message-icon">✓</span>
+                    Thank you for your valuable feedback! We appreciate your input.
+                </div>
+                
+                <div id="feedback-error" class="feedback-message error" style="display: none;">
+                    <span class="message-icon">⚠</span>
+                    <span id="error-text">Please provide more detailed feedback to help us improve.</span>
+                </div>
+            </div>
+        </div>
+    </section>
     <footer class="site-footer">
         <div class="container">
             <p>&copy; <span id="year"></span> AgentBase. All rights reserved.</p>
@@ -726,6 +1016,160 @@
                 event.target.reset();
             }, 2000);
         }
+
+        // Feedback form functionality
+        function initializeFeedbackWidget() {
+            const textarea = document.getElementById('feedback-text');
+            const charCount = document.getElementById('char-count');
+            const submitBtn = document.querySelector('.feedback-submit-btn');
+            
+            // Character counter
+            textarea.addEventListener('input', function() {
+                const count = this.value.length;
+                charCount.textContent = count;
+                
+                // Update counter color based on length
+                if (count < 10) {
+                    charCount.style.color = '#f44336';
+                } else {
+                    charCount.style.color = '#4CAF50';
+                }
+            });
+        }
+
+        function validateFeedbackText(text, rating) {
+            const minLength = 10;
+            const cleanText = text.trim().toLowerCase();
+            
+            // Check minimum length
+            if (text.length < minLength) {
+                return {
+                    valid: false,
+                    message: `Please provide at least ${minLength} characters of feedback.`
+                };
+            }
+            
+            // Check for test-like content
+            const testPatterns = [
+                /^test(ing)?[\s\d]*$/,
+                /^(test|testing)\s*(123|456|789|\d+)$/,
+                /^(asdf|qwerty|abc|xyz|lorem|ipsum)[\s\d]*$/,
+                /^[a-z]{1,3}\s*\d*$/,
+                /^[\d\s]+$/,
+                /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/
+            ];
+            
+            if (testPatterns.some(pattern => pattern.test(cleanText))) {
+                return {
+                    valid: false,
+                    message: 'Please provide meaningful feedback instead of test text. Tell us what you think about AgentBase!'
+                };
+            }
+            
+            // Check for very generic responses with neutral rating
+            if (parseInt(rating) === 3) {
+                const genericPatterns = [
+                    /^(ok|okay|fine|good|nice|cool|great)[\s\.,!]*$/,
+                    /^(looks?\s*(good|nice|cool|ok|okay|fine))[\s\.,!]*$/,
+                    /^(it'?s?\s*(ok|okay|fine|good|nice|cool))[\s\.,!]*$/
+                ];
+                
+                if (genericPatterns.some(pattern => pattern.test(cleanText))) {
+                    return {
+                        valid: false,
+                        message: 'Since you gave a neutral rating, please help us understand what we could improve or what you liked specifically.'
+                    };
+                }
+            }
+            
+            return { valid: true };
+        }
+
+        function handleFeedbackSubmit(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const rating = form.querySelector('input[name="rating"]:checked')?.value;
+            const feedback = form.querySelector('#feedback-text').value.trim();
+            const submitBtn = form.querySelector('.feedback-submit-btn');
+            const successMsg = document.getElementById('feedback-success');
+            const errorMsg = document.getElementById('feedback-error');
+            const errorText = document.getElementById('error-text');
+            
+            // Hide previous messages
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+            
+            // Validate feedback
+            const validation = validateFeedbackText(feedback, rating);
+            
+            if (!validation.valid) {
+                errorText.textContent = validation.message;
+                errorMsg.style.display = 'flex';
+                return;
+            }
+            
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            
+            // Simulate API call (in real implementation, this would send to backend)
+            setTimeout(() => {
+                // Create feedback object
+                const feedbackData = {
+                    id: new Date().toISOString(),
+                    rating: parseInt(rating),
+                    feedback: feedback,
+                    sentiment: analyzeSentiment(feedback, rating),
+                    timestamp: new Date().toISOString(),
+                    source: 'RefinelyAI Feedback Widget'
+                };
+                
+                // Log feedback (in real implementation, this would go to analytics/backend)
+                console.log('Feedback submitted:', feedbackData);
+                
+                // Show success message
+                successMsg.style.display = 'flex';
+                
+                // Reset form
+                form.reset();
+                document.getElementById('char-count').textContent = '0';
+                document.getElementById('char-count').style.color = '#f44336';
+                
+                // Reset submit button
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Feedback';
+                
+                // Auto-hide success message after 5 seconds
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 5000);
+                
+            }, 1000);
+        }
+
+        function analyzeSentiment(text, rating) {
+            // Simple sentiment analysis based on rating and keywords
+            const positiveWords = ['good', 'great', 'excellent', 'amazing', 'love', 'like', 'awesome', 'fantastic', 'wonderful', 'perfect'];
+            const negativeWords = ['bad', 'terrible', 'awful', 'hate', 'dislike', 'horrible', 'worst', 'poor', 'disappointing'];
+            
+            const lowerText = text.toLowerCase();
+            const positiveCount = positiveWords.filter(word => lowerText.includes(word)).length;
+            const negativeCount = negativeWords.filter(word => lowerText.includes(word)).length;
+            
+            if (rating >= 4 || positiveCount > negativeCount) {
+                return 'positive';
+            } else if (rating <= 2 || negativeCount > positiveCount) {
+                return 'negative';
+            } else {
+                return 'neutral';
+            }
+        }
+
+        // Initialize feedback widget when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeFeedbackWidget();
+        });
 
         // Smooth scroll for scroll hint
         document.querySelector('.scroll-hint').addEventListener('click', () => {
