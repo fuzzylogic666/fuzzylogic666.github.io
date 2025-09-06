@@ -769,6 +769,12 @@
 
             try {
                 // Store email in localStorage (could be replaced with real service later)
+                // To upgrade to a real email service, replace this block with:
+                // const response = await fetch('YOUR_EMAIL_SERVICE_ENDPOINT', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({ email: email })
+                // });
                 const existingEmails = JSON.parse(localStorage.getItem('agentbase-emails') || '[]');
                 
                 // Check if email already exists
