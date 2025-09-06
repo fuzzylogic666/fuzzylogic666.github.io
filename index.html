@@ -9,6 +9,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgentBase — Create agents that use computers</title>
     <style>
+        :root {
+            /* Dark theme (default) */
+            --bg-primary: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+            --bg-secondary: rgba(255, 255, 255, 0.02);
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #888;
+            --text-input-placeholder: #666;
+            --accent-primary: #00ffe7;
+            --accent-shadow: rgba(0, 255, 200, 0.12);
+            --accent-glow: rgba(0, 255, 200, 0.1);
+            --accent-border: rgba(0, 255, 200, 0.1);
+            --border-color: #333;
+            --floating-bg: rgba(0, 255, 200, 0.08);
+            --floating-shadow: rgba(0, 255, 200, 0.15);
+            --overlay-light: rgba(255, 255, 255, 0.03);
+            --overlay-lighter: rgba(255, 255, 255, 0.08);
+            --btn-bg: linear-gradient(135deg, #ffffff 0%, #00ffe7 100%);
+            --btn-text: #000000;
+            --btn-hover-shadow: rgba(0, 255, 200, 0.2);
+        }
+
+        [data-theme="light"] {
+            /* Light theme */
+            --bg-primary: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f1f3f4 100%);
+            --bg-secondary: rgba(0, 0, 0, 0.03);
+            --bg-card: rgba(0, 0, 0, 0.08);
+            --text-primary: #1a1a1a;
+            --text-secondary: #495057;
+            --text-muted: #6c757d;
+            --text-input-placeholder: #adb5bd;
+            --accent-primary: #007bff;
+            --accent-shadow: rgba(0, 123, 255, 0.2);
+            --accent-glow: rgba(0, 123, 255, 0.15);
+            --accent-border: rgba(0, 123, 255, 0.2);
+            --border-color: #dee2e6;
+            --floating-bg: rgba(0, 123, 255, 0.1);
+            --floating-shadow: rgba(0, 123, 255, 0.2);
+            --overlay-light: rgba(0, 0, 0, 0.05);
+            --overlay-lighter: rgba(0, 0, 0, 0.1);
+            --btn-bg: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            --btn-text: #ffffff;
+            --btn-hover-shadow: rgba(0, 123, 255, 0.3);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -17,16 +63,57 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
-            color: #ffffff;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px var(--accent-shadow);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px var(--accent-glow);
+        }
+
+        .theme-toggle svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        [data-theme="light"] .theme-toggle .sun-icon {
+            display: block;
+        }
+
+        [data-theme="light"] .theme-toggle .moon-icon {
+            display: none;
         }
 
         /* Hero Section */
@@ -47,7 +134,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+            background: radial-gradient(circle at 50% 50%, var(--overlay-light) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -68,14 +155,14 @@
             width: 90px;
             height: 90px;
             border-radius: 18px;
-            box-shadow: 0 0 32px 0 rgba(0, 255, 200, 0.12), 0 0 0 8px rgba(0, 255, 200, 0.04);
-            background: rgba(255, 255, 255, 0.02);
+            box-shadow: 0 0 32px 0 var(--accent-shadow), 0 0 0 8px var(--floating-bg);
+            background: var(--bg-secondary);
             animation: floatLogo 3.5s ease-in-out infinite;
             transition: box-shadow 0.3s, transform 0.3s;
         }
 
         .hero-logo-img:hover {
-            box-shadow: 0 0 48px 0 rgba(0, 255, 200, 0.22), 0 0 0 12px rgba(0, 255, 200, 0.08);
+            box-shadow: 0 0 48px 0 var(--floating-shadow), 0 0 0 12px var(--accent-glow);
             transform: scale(1.07) rotate(-2deg);
         }
 
@@ -107,11 +194,11 @@
             font-size: 4rem;
             font-weight: 800;
             letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 100%);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 2px 24px rgba(0, 255, 200, 0.08);
+            text-shadow: 0 2px 24px var(--accent-glow);
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1s ease-out 0.3s forwards;
@@ -120,8 +207,8 @@
         .tagline {
             font-size: 1.5rem;
             font-weight: 400;
-            color: #a0a0a0;
-            text-shadow: 0 0 20px rgba(0, 255, 200, 0.1);
+            color: var(--text-secondary);
+            text-shadow: 0 0 20px var(--accent-glow);
             max-width: 600px;
             margin-bottom: 3rem;
             opacity: 0;
@@ -139,8 +226,8 @@
             width: 18px;
             height: 18px;
             border-radius: 3px;
-            box-shadow: 0 0 5px 0 rgba(0, 255, 200, 0.04), 0 0 0 1px rgba(0, 255, 200, 0.02);
-            background: rgba(0, 255, 200, 0.02);
+            box-shadow: 0 0 5px 0 var(--floating-bg), 0 0 0 1px var(--accent-glow);
+            background: var(--floating-bg);
             animation: floatElement 2.5s ease-in-out infinite 0.8s;
             pointer-events: none;
             z-index: 1;
@@ -154,8 +241,8 @@
             width: 15px;
             height: 15px;
             border-radius: 2px;
-            box-shadow: 0 0 4px 0 rgba(0, 255, 200, 0.03), 0 0 0 1px rgba(0, 255, 200, 0.01);
-            background: rgba(0, 255, 200, 0.015);
+            box-shadow: 0 0 4px 0 var(--floating-bg), 0 0 0 1px var(--accent-glow);
+            background: var(--floating-bg);
             animation: floatElement 3.2s ease-in-out infinite 1.2s;
             pointer-events: none;
             z-index: 1;
@@ -173,8 +260,8 @@
         .scroll-hint::before {
             content: '↓';
             font-size: 1.5rem;
-            color: #00ffe7;
-            text-shadow: 0 0 10px rgba(0, 255, 200, 0.3);
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px var(--accent-glow);
         }
 
         /* Teaser Panels */
@@ -202,8 +289,8 @@
             width: 60px;
             height: 60px;
             border-radius: 12px;
-            box-shadow: 0 0 24px 0 rgba(0, 255, 200, 0.15), 0 0 0 6px rgba(0, 255, 200, 0.06);
-            background: rgba(0, 255, 200, 0.08);
+            box-shadow: 0 0 24px 0 var(--floating-shadow), 0 0 0 6px var(--floating-bg);
+            background: var(--floating-bg);
             animation: floatElement 4s ease-in-out infinite;
             pointer-events: none;
             z-index: 1;
@@ -251,19 +338,19 @@
             font-weight: 600;
             letter-spacing: -0.02em;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 50%, #d0d0d0 100%);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 50%, var(--text-secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 30px rgba(0, 255, 200, 0.15);
+            text-shadow: 0 0 30px var(--accent-shadow);
         }
 
         .teaser-subtitle {
             font-size: 1.25rem;
-            color: #888;
+            color: var(--text-muted);
             font-weight: 400;
             position: relative;
-            text-shadow: 0 0 15px rgba(0, 255, 200, 0.08);
+            text-shadow: 0 0 15px var(--accent-glow);
         }
 
         /* Floating elements for teaser subtitles */
@@ -275,8 +362,8 @@
             width: 20px;
             height: 20px;
             border-radius: 3px;
-            box-shadow: 0 0 6px 0 rgba(0, 255, 200, 0.05), 0 0 0 1px rgba(0, 255, 200, 0.02);
-            background: rgba(0, 255, 200, 0.03);
+            box-shadow: 0 0 6px 0 var(--floating-bg), 0 0 0 1px var(--accent-glow);
+            background: var(--floating-bg);
             animation: floatElement 3s ease-in-out infinite 0.3s;
             pointer-events: none;
             z-index: 1;
@@ -302,7 +389,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+            background: radial-gradient(circle at 50% 50%, var(--overlay-light) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -316,9 +403,9 @@
             width: 300px;
             height: 200px;
             background:
-                radial-gradient(circle at 25% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 60%),
-                radial-gradient(circle at 75% 40%, rgba(255, 255, 255, 0.06) 0%, transparent 60%),
-                radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.04) 0%, transparent 60%);
+                radial-gradient(circle at 25% 30%, var(--overlay-lighter) 0%, transparent 60%),
+                radial-gradient(circle at 75% 40%, var(--floating-bg) 0%, transparent 60%),
+                radial-gradient(circle at 50% 70%, var(--overlay-light) 0%, transparent 60%);
             opacity: 0;
             animation: revealFinalAgent 2s ease-out 0.5s forwards;
             pointer-events: none;
@@ -331,8 +418,8 @@
             width: 50px;
             height: 50px;
             border-radius: 10px;
-            box-shadow: 0 0 20px 0 rgba(0, 255, 200, 0.12), 0 0 0 4px rgba(0, 255, 200, 0.05);
-            background: rgba(0, 255, 200, 0.06);
+            box-shadow: 0 0 20px 0 var(--accent-shadow), 0 0 0 4px var(--floating-bg);
+            background: var(--floating-bg);
             animation: floatElement 3.5s ease-in-out infinite;
             pointer-events: none;
             z-index: 1;
@@ -345,22 +432,11 @@
             width: 40px;
             height: 40px;
             border-radius: 8px;
-            box-shadow: 0 0 16px 0 rgba(0, 255, 200, 0.1), 0 0 0 3px rgba(0, 255, 200, 0.04);
-            background: rgba(0, 255, 200, 0.05);
+            box-shadow: 0 0 16px 0 var(--accent-glow), 0 0 0 3px var(--floating-bg);
+            background: var(--floating-bg);
             animation: floatElement 4.5s ease-in-out infinite 1s;
             pointer-events: none;
             z-index: 1;
-        }
-
-        .final-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
-            pointer-events: none;
         }
 
 
@@ -373,11 +449,11 @@
             transform: translateY(30px);
             animation: fadeInUp 1s ease-out 0.3s forwards;
             position: relative;
-            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 100%);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 25px rgba(0, 255, 200, 0.12);
+            text-shadow: 0 0 25px var(--accent-shadow);
         }
 
         /* Floating elements for launching soon text */
@@ -389,8 +465,8 @@
             width: 22px;
             height: 22px;
             border-radius: 4px;
-            box-shadow: 0 0 7px 0 rgba(0, 255, 200, 0.06), 0 0 0 2px rgba(0, 255, 200, 0.03);
-            background: rgba(0, 255, 200, 0.04);
+            box-shadow: 0 0 7px 0 var(--floating-bg), 0 0 0 2px var(--accent-glow);
+            background: var(--floating-bg);
             animation: floatElement 2.8s ease-in-out infinite 0.4s;
             pointer-events: none;
             z-index: 1;
@@ -404,8 +480,8 @@
             width: 18px;
             height: 18px;
             border-radius: 3px;
-            box-shadow: 0 0 5px 0 rgba(0, 255, 200, 0.04), 0 0 0 1px rgba(0, 255, 200, 0.02);
-            background: rgba(0, 255, 200, 0.025);
+            box-shadow: 0 0 5px 0 var(--floating-bg), 0 0 0 1px var(--accent-glow);
+            background: var(--floating-bg);
             animation: floatElement 3.6s ease-in-out infinite 0.9s;
             pointer-events: none;
             z-index: 1;
@@ -428,8 +504,8 @@
             width: 30px;
             height: 30px;
             border-radius: 5px;
-            box-shadow: 0 0 10px 0 rgba(0, 255, 200, 0.08), 0 0 0 3px rgba(0, 255, 200, 0.04);
-            background: rgba(0, 255, 200, 0.05);
+            box-shadow: 0 0 10px 0 var(--accent-glow), 0 0 0 3px var(--floating-bg);
+            background: var(--floating-bg);
             animation: floatElement 3.3s ease-in-out infinite 0.7s;
             pointer-events: none;
             z-index: 1;
@@ -445,55 +521,55 @@
         .email-input {
             flex: 1;
             padding: 1rem 1.5rem;
-            border: 1px solid #333;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
+            background: var(--bg-card);
+            color: var(--text-primary);
             font-size: 1rem;
             transition: all 0.3s ease;
-            text-shadow: 0 0 10px rgba(0, 255, 200, 0.05);
+            text-shadow: 0 0 10px var(--accent-glow);
         }
 
         .email-input:focus {
             outline: none;
-            border-color: #00ffe7;
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 15px rgba(0, 255, 200, 0.1);
+            border-color: var(--accent-primary);
+            background: var(--overlay-lighter);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
         .email-input::placeholder {
-            color: #666;
+            color: var(--text-input-placeholder);
         }
 
         .notify-btn {
             padding: 1rem 2rem;
-            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 100%);
-            color: #000000;
+            background: var(--btn-bg);
+            color: var(--btn-text);
             border: none;
             border-radius: 8px;
             font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-shadow: 0 0 8px rgba(0, 255, 200, 0.1);
+            text-shadow: 0 0 8px var(--accent-glow);
         }
 
         .notify-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 255, 200, 0.2);
+            box-shadow: 0 8px 25px var(--btn-hover-shadow);
         }
 
         /* Footer floating elements */
         .site-footer {
             position: relative;
             padding: 2rem 0;
-            background: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid rgba(0, 255, 200, 0.1);
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--accent-border);
         }
 
         .site-footer p {
-            color: #a0a0a0;
-            text-shadow: 0 0 12px rgba(0, 255, 200, 0.06);
+            color: var(--text-secondary);
+            text-shadow: 0 0 12px var(--accent-glow);
         }
 
         .site-footer::before {
@@ -504,8 +580,8 @@
             width: 35px;
             height: 35px;
             border-radius: 6px;
-            box-shadow: 0 0 12px 0 rgba(0, 255, 200, 0.08), 0 0 0 2px rgba(0, 255, 200, 0.03);
-            background: rgba(0, 255, 200, 0.04);
+            box-shadow: 0 0 12px 0 var(--accent-glow), 0 0 0 2px var(--floating-bg);
+            background: var(--floating-bg);
             animation: floatElement 5s ease-in-out infinite 0.5s;
             pointer-events: none;
             z-index: 1;
@@ -519,8 +595,8 @@
             width: 25px;
             height: 25px;
             border-radius: 4px;
-            box-shadow: 0 0 8px 0 rgba(0, 255, 200, 0.06), 0 0 0 1px rgba(0, 255, 200, 0.02);
-            background: rgba(0, 255, 200, 0.03);
+            box-shadow: 0 0 8px 0 var(--floating-bg), 0 0 0 1px var(--accent-glow);
+            background: var(--floating-bg);
             animation: floatElement 4s ease-in-out infinite 1.5s;
             pointer-events: none;
             z-index: 1;
@@ -556,6 +632,12 @@
 
             60% {
                 transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        @keyframes revealFinalAgent {
+            to {
+                opacity: 1;
             }
         }
 
@@ -658,6 +740,24 @@
 </head>
 
 <body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode">
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+    </button>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
@@ -729,6 +829,23 @@
         <div id="feedback-container"></div>
     </div>
     <script>
+        // Theme management
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Initialize theme on page load
+        initTheme();
+
         // Intersection Observer for scroll animations
         const observerOptions = {
             threshold: 0.1,
@@ -761,7 +878,7 @@
 
             setTimeout(() => {
                 btn.textContent = originalText;
-                btn.style.background = 'linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%)';
+                btn.style.background = '';
                 event.target.reset();
             }, 2000);
         }
@@ -772,6 +889,9 @@
                 behavior: 'smooth'
             });
         });
+
+        // Update year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
     
     <!-- Initialize Refinely Feedback Widget -->
