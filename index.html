@@ -622,12 +622,56 @@
             scroll-behavior: smooth;
         }
         
-        /* Feedback widget floating container */
+        /* Feedback widget floating container - hidden by default */
         .feedback-float {
             position: fixed;
             bottom: 24px;
             right: 24px;
             z-index: 9999;
+            display: none; /* Hidden by default */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .feedback-float.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Feedback trigger button */
+        .feedback-trigger {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 28px;
+            border: none;
+            background: linear-gradient(135deg, #4361ee 0%, #3730a3 100%);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(67, 97, 238, 0.4);
+            z-index: 9998;
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .feedback-trigger.show {
+            display: flex;
+        }
+
+        .feedback-trigger:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.6);
+        }
+
+        .feedback-trigger.hidden {
+            display: none;
         }
 
         /* Make widget wider by sizing its container */
@@ -723,6 +767,9 @@
         </div>
     </footer>
     
+    <!-- Feedback Trigger Button -->
+    <button id="feedback-trigger" class="feedback-trigger" title="Share your thoughts">💬</button>
+    
     <!-- Floating Feedback Widget -->
     <div id="feedback-float" class="feedback-float">
         <button class="feedback-close" aria-label="Close feedback">×</button>
@@ -778,34 +825,88 @@
     <script type="module">
         import { FeedbackWidget } from 'https://esm.sh/@refinelyai/feedback-widget@latest';
 
-        // Keep widget open by default (rendered on page load)
+        // Initialize widget but keep it hidden initially
         const widget = new FeedbackWidget('#feedback-container', {
             apiKey: 'widget_mf8m9v59_l23qkqf07sf',
             apiUrl: 'https://jedbptsmqiiamizbooiz.supabase.co/functions/v1/feedback',
            customization: {
-        title: 'How can we improve?',
+        title: 'Help us build something great!',
         layout: 'vertical',
         starRating: {
           maxStars: 5,
           starActiveColor: '#4361ee',
-          labels: ['Poor', 'Fair', 'Good', 'Very Good', 'Excellent']
+          labels: ['Not interested', 'Somewhat interested', 'Interested', 'Very interested', 'Extremely interested']
         },
         textInput: {
-          placeholder: 'Tell us more about your experience...',
+          placeholder: 'What would make AgentBase valuable for you? What features are you hoping to see?',
           maxLength: 500
         },
         submitButton: {
-          text: 'Send Feedback'
+          text: 'Share Feedback'
         }
       }
         });
 
-        // Allow users to dismiss the floating widget
+        // Get DOM elements
         const floatEl = document.getElementById('feedback-float');
+        const triggerBtn = document.getElementById('feedback-trigger');
         const closeBtn = floatEl.querySelector('.feedback-close');
-        closeBtn.addEventListener('click', () => {
-            floatEl.style.display = 'none';
+
+        // Track user engagement
+        let hasScrolled = false;
+        let timeOnPage = 0;
+        let engagementMet = false;
+
+        // Show trigger button after user engagement
+        function checkEngagement() {
+            if (!engagementMet && (hasScrolled || timeOnPage >= 30)) {
+                engagementMet = true;
+                triggerBtn.classList.add('show');
+                
+                // Optional: Add a subtle animation to draw attention
+                setTimeout(() => {
+                    triggerBtn.style.animation = 'pulse 2s ease-in-out 3';
+                }, 1000);
+            }
+        }
+
+        // Track scrolling
+        window.addEventListener('scroll', () => {
+            if (!hasScrolled && window.scrollY > 100) {
+                hasScrolled = true;
+                checkEngagement();
+            }
         });
+
+        // Track time on page
+        setInterval(() => {
+            timeOnPage += 5;
+            checkEngagement();
+        }, 5000);
+
+        // Show feedback widget when trigger is clicked
+        triggerBtn.addEventListener('click', () => {
+            floatEl.classList.add('show');
+            triggerBtn.classList.add('hidden');
+        });
+
+        // Hide feedback widget when close is clicked
+        closeBtn.addEventListener('click', () => {
+            floatEl.classList.remove('show');
+            triggerBtn.classList.add('show');
+            triggerBtn.classList.remove('hidden');
+        });
+
+        // Add pulse animation for the trigger button
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 
