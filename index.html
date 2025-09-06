@@ -560,6 +560,11 @@
             box-shadow: 0 8px 25px var(--shadow-secondary);
         }
 
+        /* Success state for button */
+        .notify-btn.success {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%) !important;
+        }
+
         /* Footer floating elements */
         .site-footer {
             position: relative;
@@ -851,11 +856,11 @@
             const btn = event.target.querySelector('.notify-btn');
             const originalText = btn.textContent;
             btn.textContent = 'Thanks!';
-            btn.style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
+            btn.classList.add('success');
 
             setTimeout(() => {
                 btn.textContent = originalText;
-                btn.style.background = 'linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%)';
+                btn.classList.remove('success');
                 event.target.reset();
             }, 2000);
         }
