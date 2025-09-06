@@ -264,6 +264,11 @@
             font-weight: 400;
             position: relative;
             text-shadow: 0 0 15px rgba(0, 255, 200, 0.08);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         /* Floating elements for teaser subtitles */
@@ -599,6 +604,13 @@
 
             .container {
                 padding: 0 1rem;
+            }
+            
+            .teaser-subtitle {
+                padding: 0 0.5rem;
+                min-width: 0;
+                overflow: visible;
+                text-overflow: clip;
             }
 
             /* Hide floating elements on mobile for cleaner look */
