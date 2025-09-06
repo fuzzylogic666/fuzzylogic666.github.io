@@ -621,6 +621,39 @@
         html {
             scroll-behavior: smooth;
         }
+        
+        /* Feedback widget floating container */
+        .feedback-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+        }
+
+        /* Make widget wider by sizing its container */
+        #feedback-container {
+            width: 480px; /* wider than default */
+            max-width: calc(100vw - 48px); /* keep padding from edges on small screens */
+        }
+
+        /* Close button for feedback widget */
+        .feedback-close {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 28px;
+            height: 28px;
+            border-radius: 14px;
+            border: none;
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        .feedback-close:hover {
+            filter: brightness(0.95);
+        }
     </style>
 </head>
 
@@ -689,6 +722,12 @@
             <p>&copy; <span id="year"></span> AgentBase. All rights reserved.</p>
         </div>
     </footer>
+    
+    <!-- Floating Feedback Widget -->
+    <div id="feedback-float" class="feedback-float">
+        <button class="feedback-close" aria-label="Close feedback">×</button>
+        <div id="feedback-container"></div>
+    </div>
     <script>
         // Intersection Observer for scroll animations
         const observerOptions = {
@@ -732,6 +771,40 @@
             document.querySelector('#panel1').scrollIntoView({
                 behavior: 'smooth'
             });
+        });
+    </script>
+    
+    <!-- Initialize Refinely Feedback Widget -->
+    <script type="module">
+        import { FeedbackWidget } from 'https://esm.sh/@refinelyai/feedback-widget';
+
+        // Keep widget open by default (rendered on page load)
+        const widget = new FeedbackWidget('#feedback-container', {
+            apiKey: 'widget_mf8m9v59_l23qkqf07sf',
+            apiUrl: 'https://jedbptsmqiiamizbooiz.supabase.co/functions/v1/feedback',
+           customization: {
+        title: 'How can we improve?',
+        layout: 'vertical',
+        starRating: {
+          maxStars: 5,
+          starActiveColor: '#4361ee',
+          labels: ['Poor', 'Fair', 'Good', 'Very Good', 'Excellent']
+        },
+        textInput: {
+          placeholder: 'Tell us more about your experience...',
+          maxLength: 500
+        },
+        submitButton: {
+          text: 'Send Feedback'
+        }
+      }
+        });
+
+        // Allow users to dismiss the floating widget
+        const floatEl = document.getElementById('feedback-float');
+        const closeBtn = floatEl.querySelector('.feedback-close');
+        closeBtn.addEventListener('click', () => {
+            floatEl.style.display = 'none';
         });
     </script>
 </body>
