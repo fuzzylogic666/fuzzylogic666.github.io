@@ -38,6 +38,7 @@
             align-items: center;
             text-align: center;
             position: relative;
+            padding-top: 80px; /* Account for fixed navigation */
         }
 
         .hero::before {
@@ -654,13 +655,175 @@
         .feedback-close:hover {
             filter: brightness(0.95);
         }
+
+        /* Navigation and Login Button */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .nav-logo img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #4361ee 0%, #3730a3 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.3);
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            color: #ffc107;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .status-badge::before {
+            content: '⚡';
+            font-size: 1rem;
+        }
+
+        /* Login Modal */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-close:hover {
+            opacity: 1;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .modal-text {
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-signup-btn {
+            background: linear-gradient(135deg, #4361ee 0%, #3730a3 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .modal-signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.3);
+        }
     </style>
 </head>
 
 <body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.png" alt="AgentBase Logo">
+                <span>AgentBase</span>
+            </div>
+            <button class="login-btn" onclick="showLoginModal()">Login</button>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
+            <div class="status-badge">Pre-Launch Preview</div>
             <div class="hero-brand">
                 <img src="assets/logo.png" alt="AgentBase Logo" class="hero-logo-img">
                 <span class="hero-logo-text">AgentBase</span>
@@ -723,6 +886,21 @@
         </div>
     </footer>
     
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="hideLoginModal()">&times;</button>
+            <h2 class="modal-title">Login Coming Soon!</h2>
+            <p class="modal-text">
+                AgentBase is currently in development and will be launching soon. Login functionality will be available once the platform launches.
+            </p>
+            <p class="modal-text">
+                Want to be the first to know when we're ready? Join our waitlist below and we'll notify you as soon as login becomes available.
+            </p>
+            <button class="modal-signup-btn" onclick="scrollToSignup()">Join Waitlist</button>
+        </div>
+    </div>
+    
     <!-- Floating Feedback Widget -->
     <div id="feedback-float" class="feedback-float">
         <button class="feedback-close" aria-label="Close feedback">×</button>
@@ -771,6 +949,40 @@
             document.querySelector('#panel1').scrollIntoView({
                 behavior: 'smooth'
             });
+        });
+
+        // Login modal functions
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+        }
+
+        function hideLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+        }
+
+        function scrollToSignup() {
+            hideLoginModal();
+            document.querySelector('.email-capture').scrollIntoView({
+                behavior: 'smooth'
+            });
+            // Focus on the email input after scrolling
+            setTimeout(() => {
+                document.querySelector('.email-input').focus();
+            }, 500);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('loginModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('loginModal')) {
+                hideLoginModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hideLoginModal();
+            }
         });
     </script>
     
