@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="assets/logo.png" type="image/png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Report — AgentBase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .header {
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(0, 255, 200, 0.1);
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .header-logo-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            box-shadow: 0 0 16px 0 rgba(0, 255, 200, 0.12);
+        }
+
+        .header-logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            color: #a0a0a0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #00ffe7;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 4rem 0;
+        }
+
+        .report-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .report-title {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #00ffe7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .report-period {
+            font-size: 1.2rem;
+            color: #a0a0a0;
+            margin-bottom: 0.5rem;
+        }
+
+        .report-period-dates {
+            font-size: 1rem;
+            color: #666;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Report Content */
+        .report-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .report-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 200, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .report-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00ffe7;
+        }
+
+        .report-stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .report-stat:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: #a0a0a0;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .rating-display {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stars {
+            color: #4361ee;
+        }
+
+        /* Summary Section */
+        .feedback-summary {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 255, 200, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .feedback-summary h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #00ffe7;
+        }
+
+        .feedback-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feedback-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feedback-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feedback-text {
+            color: #a0a0a0;
+            line-height: 1.5;
+        }
+
+        .feedback-date {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 2rem 0;
+            border-top: 1px solid rgba(0, 255, 200, 0.1);
+            text-align: center;
+            color: #a0a0a0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .report-title {
+                font-size: 2rem;
+            }
+
+            .report-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-brand">
+                <img src="assets/logo.png" alt="AgentBase Logo" class="header-logo-img">
+                <span class="header-logo-text">AgentBase</span>
+            </div>
+            <nav>
+                <a href="index.html" class="nav-link">← Back to Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Report Header -->
+            <div class="report-header">
+                <h1 class="report-title">Feedback Report</h1>
+                <p class="report-period">Period: September 2 - September 9, 2025</p>
+                <p class="report-period-dates">2025-08-17T23:56:00.418+00:00 – 2025-09-09T03:27:37.068+00:00</p>
+            </div>
+
+            <!-- Report Stats -->
+            <div class="report-content">
+                <div class="report-card">
+                    <h3>Overview</h3>
+                    <div class="report-stat">
+                        <span class="stat-label">Total Feedback Submissions</span>
+                        <span class="stat-value">12</span>
+                    </div>
+                    <div class="report-stat">
+                        <span class="stat-label">Average Rating</span>
+                        <div class="rating-display">
+                            <span class="stars">★★★★☆</span>
+                            <span class="stat-value">4.2/5</span>
+                        </div>
+                    </div>
+                    <div class="report-stat">
+                        <span class="stat-label">Response Rate</span>
+                        <span class="stat-value">8.3%</span>
+                    </div>
+                </div>
+
+                <div class="report-card">
+                    <h3>Rating Distribution</h3>
+                    <div class="report-stat">
+                        <span class="stat-label">★★★★★ Excellent</span>
+                        <span class="stat-value">5 (41.7%)</span>
+                    </div>
+                    <div class="report-stat">
+                        <span class="stat-label">★★★★☆ Very Good</span>
+                        <span class="stat-value">4 (33.3%)</span>
+                    </div>
+                    <div class="report-stat">
+                        <span class="stat-label">★★★☆☆ Good</span>
+                        <span class="stat-value">2 (16.7%)</span>
+                    </div>
+                    <div class="report-stat">
+                        <span class="stat-label">★★☆☆☆ Fair</span>
+                        <span class="stat-value">1 (8.3%)</span>
+                    </div>
+                    <div class="report-stat">
+                        <span class="stat-label">★☆☆☆☆ Poor</span>
+                        <span class="stat-value">0 (0%)</span>
+                    </div>
+                </div>
+
+                <div class="report-card">
+                    <h3>Insights</h3>
+                    <div class="report-stat">
+                        <span class="stat-label">Most Common Theme</span>
+                        <span class="stat-value">UI/UX Feedback</span>
+                    </div>
+                    <div class="report-stat">
+                        <span class="stat-label">Avg. Feedback Length</span>
+                        <span class="stat-value">127 characters</span>
+                    </div>
+                    <div class="report-stat">
+                        <span class="stat-label">Peak Feedback Time</span>
+                        <span class="stat-value">2:00 PM - 4:00 PM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Feedback -->
+            <div class="feedback-summary">
+                <h3>Recent Feedback</h3>
+                
+                <div class="feedback-item">
+                    <div class="feedback-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>Excellent</span>
+                    </div>
+                    <p class="feedback-text">"Love the clean design and the concept looks very promising. The floating feedback widget is a nice touch. Looking forward to the launch!"</p>
+                    <p class="feedback-date">September 8, 2025 at 3:42 PM</p>
+                </div>
+
+                <div class="feedback-item">
+                    <div class="feedback-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span>Very Good</span>
+                    </div>
+                    <p class="feedback-text">"Great landing page! The animations are smooth. Would be helpful to have more details about pricing and features."</p>
+                    <p class="feedback-date">September 7, 2025 at 11:15 AM</p>
+                </div>
+
+                <div class="feedback-item">
+                    <div class="feedback-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>Excellent</span>
+                    </div>
+                    <p class="feedback-text">"This is exactly what we need for our automation workflows. Can't wait to try it out!"</p>
+                    <p class="feedback-date">September 6, 2025 at 4:28 PM</p>
+                </div>
+
+                <div class="feedback-item">
+                    <div class="feedback-rating">
+                        <span class="stars">★★★☆☆</span>
+                        <span>Good</span>
+                    </div>
+                    <p class="feedback-text">"Interesting concept. The page loads well but could use more information about the technical implementation."</p>
+                    <p class="feedback-date">September 5, 2025 at 9:33 AM</p>
+                </div>
+
+                <div class="feedback-item">
+                    <div class="feedback-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span>Very Good</span>
+                    </div>
+                    <p class="feedback-text">"Clean design and good use of animations. The email signup worked smoothly."</p>
+                    <p class="feedback-date">September 3, 2025 at 2:17 PM</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="year">2025</span> AgentBase. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
