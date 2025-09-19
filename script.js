@@ -144,6 +144,73 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 600);
         });
     });
+
+    // Email capture form for Free AI Files (llm.txt + llms-full.txt)
+    const aiFilesForm = document.getElementById('ai-files-form');
+    if (aiFilesForm) {
+        const emailInput = aiFilesForm.querySelector('#email');
+        const submitBtn = aiFilesForm.querySelector('button[type="submit"]');
+        const successMsg = document.getElementById('form-success');
+
+        const isValidEmail = (email) => {
+            // Simple RFC5322-ish email regex suitable for client-side validation
+            return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+        };
+
+        aiFilesForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = (emailInput.value || '').trim();
+            if (!isValidEmail(email)) {
+                emailInput.focus();
+                emailInput.setAttribute('aria-invalid', 'true');
+                emailInput.style.borderColor = 'rgba(255, 99, 99, 0.8)';
+                return;
+            } else {
+                emailInput.removeAttribute('aria-invalid');
+                emailInput.style.borderColor = '';
+            }
+
+            // Prevent double submissions
+            submitBtn.disabled = true;
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending…';
+
+            try {
+                // Placeholder for Supabase integration
+                // TODO: Replace with Supabase insert, e.g.:
+                // const { data, error } = await supabase.from('ai_file_requests').insert({ email });
+                // if (error) throw error;
+
+                // For now, store in localStorage as a temporary measure
+                const key = 'ai_file_requests';
+                const existing = JSON.parse(localStorage.getItem(key) || '[]');
+                existing.push({ email, ts: new Date().toISOString() });
+                localStorage.setItem(key, JSON.stringify(existing));
+
+                // Show success UI
+                if (successMsg) {
+                    successMsg.hidden = false;
+                }
+                aiFilesForm.reset();
+            } catch (err) {
+                console.error('Form submission error:', err);
+                alert('Sorry, something went wrong. Please try again.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
+
+        // Improve UX: live validation on blur
+        emailInput.addEventListener('blur', () => {
+            if (!emailInput.value) return;
+            if (isValidEmail(emailInput.value)) {
+                emailInput.removeAttribute('aria-invalid');
+                emailInput.style.borderColor = '';
+            }
+        });
+    }
 });
 
 // Add CSS for ripple effect
