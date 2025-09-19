@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Allow crawling of all content
+Allow: /*.css
+Allow: /*.js
+Allow: /assets/
+
+# Block crawling of sensitive files (none in this case, but good practice)
+Disallow: /private/
+Disallow: /*.log
+
+# Sitemap location
+Sitemap: https://www.useagentbase.dev/sitemap.xml
+
+# Crawl delay (optional - helps prevent overwhelming the server)
+Crawl-delay: 1
