@@ -8,7 +8,8 @@
 :root {
     --primary-black: #000000;
     --secondary-black: #0a0a0a;
-    --accent-gold: #E6C27A; /* warmer pastel amber */
+    --accent-gold: #E6C27A;
+    /* warmer pastel amber */
     --gold-light: #F3E1A3;
     --gold-dark: #B8944A;
     --text-white: #ffffff;
@@ -296,6 +297,7 @@ body {
     gap: 14px;
     align-items: center;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .hero-cta.hero-cta-secondary {
@@ -495,6 +497,7 @@ body {
     color: var(--accent-gold);
     font-weight: 600;
     margin-top: 20px;
+    text-align: center;
 }
 
 /* How it Works Section */
@@ -507,7 +510,8 @@ body {
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
     margin-top: 48px;
-    max-width: 760px; /* constrain width so cards are smaller */
+    max-width: 760px;
+    /* constrain width so cards are smaller */
     margin-left: auto;
     margin-right: auto;
 }
@@ -521,7 +525,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    aspect-ratio: 1 / 1; /* make cards square-ish on desktop */
+    aspect-ratio: 1 / 1;
+    /* make cards square-ish on desktop */
     backdrop-filter: blur(20px);
     transition: all 0.3s ease;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
@@ -791,7 +796,8 @@ body {
 
     .features-grid {
         grid-template-columns: 1fr;
-        max-width: none; /* allow full width on mobile */
+        max-width: none;
+        /* allow full width on mobile */
         gap: 24px;
     }
 
@@ -809,6 +815,17 @@ body {
     .footer-links {
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    /* Fix form overflow on mobile */
+    .email-form .input-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .email-form .cta-button {
+        width: 100%;
+        text-align: center;
     }
 }
 
@@ -873,5 +890,16 @@ body {
     .cta-button {
         padding: 15px 30px;
         font-size: 1rem;
+    }
+
+    /* Additional form mobile fixes for very small screens */
+    .form-card {
+        margin: 20px auto 0;
+        padding: 20px;
+    }
+
+    .email-form input[type="email"] {
+        font-size: 16px;
+        /* Prevent zoom on iOS */
     }
 }
