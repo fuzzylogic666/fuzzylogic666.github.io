@@ -317,6 +317,7 @@ body {
     justify-content: center;
     align-items: center;
     animation: fadeInRight 1s ease-out 0.3s both;
+    position: relative;
 }
 
 .glass-orb {
@@ -331,6 +332,24 @@ body {
     box-shadow:
         0 0 42px rgba(230, 194, 122, 0.14),
         inset 0 0 50px rgba(255, 255, 255, 0.1);
+}
+
+.floating-logo {
+    position: absolute;
+    width: 120px;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: floatLogo 6s ease-in-out infinite;
+    z-index: 10;
+    filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.3));
+    transition: all 0.3s ease;
+}
+
+.floating-logo:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+    filter: drop-shadow(0 6px 20px rgba(230, 194, 122, 0.2));
 }
 
 .glass-orb::before {
@@ -681,6 +700,30 @@ body {
     }
 }
 
+@keyframes floatLogo {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) translateY(0px);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translateY(-15px);
+    }
+}
+
+@keyframes floatLogoMobile {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) translateY(0px);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translateY(-10px);
+    }
+}
+
 @keyframes pulse {
 
     0%,
@@ -696,6 +739,17 @@ body {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .glass-orb {
+        width: 250px;
+        height: 250px;
+    }
+
+    .floating-logo {
+        width: 100px;
+    }
+}
+
 @media (max-width: 768px) {
     .nav {
         top: 15px;
@@ -783,6 +837,11 @@ body {
     .glass-orb {
         width: 200px;
         height: 200px;
+    }
+
+    .floating-logo {
+        width: 80px;
+        animation: floatLogoMobile 6s ease-in-out infinite;
     }
 
     .section-title {
@@ -875,6 +934,10 @@ body {
 
     .hero-title {
         font-size: 2rem;
+    }
+
+    .floating-logo {
+        width: 70px;
     }
 
     .section-title {
