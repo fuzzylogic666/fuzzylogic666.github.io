@@ -1,3 +1,9 @@
+// Optional global config (set these in a separate inline script or here)
+window.FeedbackConfig = window.FeedbackConfig || {
+    // baseUrl: 'https://YOUR-PROJECT.supabase.co',
+    // apiKey: 'YOUR_EDGE_FUNCTION_API_KEY',
+};
+
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function () {
     // Mobile menu functionality
@@ -144,6 +150,90 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 600);
         });
     });
+
+    // Email capture form for Free AI Files (llm.txt + llms-full.txt)
+    const aiFilesForm = document.getElementById('ai-files-form');
+    if (aiFilesForm) {
+        const emailInput = aiFilesForm.querySelector('#email');
+        const submitBtn = aiFilesForm.querySelector('button[type="submit"]');
+        const successMsg = document.getElementById('form-success');
+        const supabaseBaseUrl = window.FeedbackConfig && window.FeedbackConfig.baseUrl;
+
+        const isValidEmail = (email) => {
+            // Simple RFC5322-ish email regex suitable for client-side validation
+            return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+        };
+
+        aiFilesForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = (emailInput.value || '').trim();
+            if (!isValidEmail(email)) {
+                emailInput.focus();
+                emailInput.setAttribute('aria-invalid', 'true');
+                emailInput.style.borderColor = 'rgba(255, 99, 99, 0.8)';
+                return;
+            } else {
+                emailInput.removeAttribute('aria-invalid');
+                emailInput.style.borderColor = '';
+            }
+
+            // Prevent double submissions
+            submitBtn.disabled = true;
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending…';
+
+            try {
+                const message = 'agentbase inbound';
+
+                if (supabaseBaseUrl && window.FeedbackConfig && window.FeedbackConfig.apiKey) {
+                    const response = await fetch(`${supabaseBaseUrl}/functions/v1/feedback`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            apiKey: window.FeedbackConfig.apiKey,
+                            rating: 5, // Default rating for contact form submissions
+                            text: `Contact Form Submission\n\nEmail: ${email}\n\nMessage: ${message}`,
+                            timestamp: new Date().toISOString()
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Backend responded with ${response.status}`);
+                    }
+                } else {
+                    console.warn('FeedbackConfig.baseUrl/apiKey not set. Falling back to localStorage.');
+                    const key = 'ai_file_requests';
+                    const existing = JSON.parse(localStorage.getItem(key) || '[]');
+                    existing.push({ email, message: 'agentbase inbound', ts: new Date().toISOString() });
+                    localStorage.setItem(key, JSON.stringify(existing));
+                }
+
+                // Show success UI
+                if (successMsg) {
+                    successMsg.hidden = false;
+                }
+                aiFilesForm.reset();
+            } catch (err) {
+                console.error('Form submission error:', err);
+                alert('Sorry, something went wrong. Please try again.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
+
+        // Improve UX: live validation on blur
+        emailInput.addEventListener('blur', () => {
+            if (!emailInput.value) return;
+            if (isValidEmail(emailInput.value)) {
+                emailInput.removeAttribute('aria-invalid');
+                emailInput.style.borderColor = '';
+            }
+        });
+    }
 });
 
 // Add CSS for ripple effect
