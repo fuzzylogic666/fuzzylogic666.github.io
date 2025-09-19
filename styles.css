@@ -504,17 +504,24 @@ body {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-    margin-top: 60px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-top: 48px;
+    max-width: 760px; /* constrain width so cards are smaller */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .feature-item {
     background: var(--gradient-glass);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
-    padding: 40px 30px;
+    padding: 24px 22px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    aspect-ratio: 1 / 1; /* make cards square-ish on desktop */
     backdrop-filter: blur(20px);
     transition: all 0.3s ease;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
@@ -537,13 +544,13 @@ body {
 }
 
 .feature-icon .icon {
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
     display: inline-block;
 }
 
 .feature-title {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 600;
     margin-bottom: 15px;
     color: var(--text-white);
@@ -784,6 +791,13 @@ body {
 
     .features-grid {
         grid-template-columns: 1fr;
+        max-width: none; /* allow full width on mobile */
+        gap: 24px;
+    }
+
+    /* Let feature cards size naturally on mobile */
+    .feature-item {
+        aspect-ratio: auto;
     }
 
     .footer-content {

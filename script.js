@@ -1,3 +1,9 @@
+// Optional global config (set these in a separate inline script or here)
+window.FeedbackConfig = window.FeedbackConfig || {
+    // baseUrl: 'https://YOUR-PROJECT.supabase.co',
+    // apiKey: 'YOUR_EDGE_FUNCTION_API_KEY',
+};
+
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function () {
     // Mobile menu functionality
@@ -151,6 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const emailInput = aiFilesForm.querySelector('#email');
         const submitBtn = aiFilesForm.querySelector('button[type="submit"]');
         const successMsg = document.getElementById('form-success');
+        const supabaseBaseUrl = window.FeedbackConfig && window.FeedbackConfig.baseUrl;
 
         const isValidEmail = (email) => {
             // Simple RFC5322-ish email regex suitable for client-side validation
@@ -177,16 +184,32 @@ document.addEventListener('DOMContentLoaded', function () {
             submitBtn.textContent = 'Sending…';
 
             try {
-                // Placeholder for Supabase integration
-                // TODO: Replace with Supabase insert, e.g.:
-                // const { data, error } = await supabase.from('ai_file_requests').insert({ email });
-                // if (error) throw error;
+                const message = 'agentbase inbound';
 
-                // For now, store in localStorage as a temporary measure
-                const key = 'ai_file_requests';
-                const existing = JSON.parse(localStorage.getItem(key) || '[]');
-                existing.push({ email, ts: new Date().toISOString() });
-                localStorage.setItem(key, JSON.stringify(existing));
+                if (supabaseBaseUrl && window.FeedbackConfig && window.FeedbackConfig.apiKey) {
+                    const response = await fetch(`${supabaseBaseUrl}/functions/v1/feedback`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            apiKey: window.FeedbackConfig.apiKey,
+                            rating: 5, // Default rating for contact form submissions
+                            text: `Contact Form Submission\n\nEmail: ${email}\n\nMessage: ${message}`,
+                            timestamp: new Date().toISOString()
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Backend responded with ${response.status}`);
+                    }
+                } else {
+                    console.warn('FeedbackConfig.baseUrl/apiKey not set. Falling back to localStorage.');
+                    const key = 'ai_file_requests';
+                    const existing = JSON.parse(localStorage.getItem(key) || '[]');
+                    existing.push({ email, message: 'agentbase inbound', ts: new Date().toISOString() });
+                    localStorage.setItem(key, JSON.stringify(existing));
+                }
 
                 // Show success UI
                 if (successMsg) {
