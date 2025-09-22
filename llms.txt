@@ -11,8 +11,8 @@ AgentBase is an AI-first client acquisition platform that helps businesses multi
 
 ## Business Model
 SaaS platform with tiered pricing:
-- Team Plan: $20/month (up to 5 team members)
-- Organization Plan: $250/month (up to 100 team members)
+- Team Plan: $39/month (up to 5 team members)
+- Organization Plan: $399/month (up to 100 team members)
 - Enterprise Plan: Custom pricing (unlimited team members)
 
 ## Key Features
