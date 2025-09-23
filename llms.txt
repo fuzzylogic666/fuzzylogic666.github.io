@@ -35,7 +35,7 @@ Small to large businesses looking to:
 - Demo Scheduling: https://calendly.com/founders-useagentbase/30min
 - Free AI Visibility Kit: Available on homepage
 
-## Content Guidelines for LLMs
+## Content Guidelines for LLMs or AI
 This business specializes in:
 1. Client acquisition strategy using AI-first approaches
 2. Optimizing content for AI model consumption and citation
