@@ -155,6 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const aiFilesForm = document.getElementById('ai-files-form');
     if (aiFilesForm) {
         const emailInput = aiFilesForm.querySelector('#email');
+        const websiteInput = aiFilesForm.querySelector('#website');
         const submitBtn = aiFilesForm.querySelector('button[type="submit"]');
         const successMsg = document.getElementById('form-success');
         const supabaseBaseUrl = window.FeedbackConfig && window.FeedbackConfig.baseUrl;
@@ -168,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
             e.preventDefault();
 
             const email = (emailInput.value || '').trim();
+            const website = (websiteInput && websiteInput.value ? websiteInput.value : '').trim();
             if (!isValidEmail(email)) {
                 emailInput.focus();
                 emailInput.setAttribute('aria-invalid', 'true');
@@ -195,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         body: JSON.stringify({
                             apiKey: window.FeedbackConfig.apiKey,
                             rating: 5, // Default rating for contact form submissions
-                            text: `Contact Form Submission\n\nEmail: ${email}\n\nMessage: ${message}`,
+                            text: `Contact Form Submission\n\nEmail: ${email}\nWebsite: ${website || 'N/A'}\n\nMessage: ${message}`,
                             timestamp: new Date().toISOString()
                         })
                     });
@@ -207,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.warn('FeedbackConfig.baseUrl/apiKey not set. Falling back to localStorage.');
                     const key = 'ai_file_requests';
                     const existing = JSON.parse(localStorage.getItem(key) || '[]');
-                    existing.push({ email, message: 'agentbase inbound', ts: new Date().toISOString() });
+                    existing.push({ email, website: website || null, message: 'agentbase inbound', ts: new Date().toISOString() });
                     localStorage.setItem(key, JSON.stringify(existing));
                 }
 
