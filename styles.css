@@ -547,9 +547,62 @@ body {
     text-align: center;
 }
 
+/* Team Credentials Section */
+.team-credentials {
+    background: var(--secondary-black);
+    padding: 50px 0;
+    text-align: center;
+}
+
+.team-credentials .section-title {
+    font-size: 2rem;
+}
+
+.company-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.company-logo-item {
+    background: var(--gradient-glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 20px 35px;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    min-width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.company-logo-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(230, 194, 122, 0.08);
+    border-color: rgba(230, 194, 122, 0.28);
+}
+
+.company-logo {
+    max-width: 100px;
+    height: auto;
+    filter: grayscale(30%) brightness(1.2);
+    opacity: 0.85;
+    transition: all 0.3s ease;
+}
+
+.company-logo-item:hover .company-logo {
+    filter: grayscale(0%) brightness(1);
+    opacity: 1;
+}
+
 /* How it Works Section */
 .how-works {
-    background: var(--secondary-black);
+    background: var(--primary-black);
 }
 
 .features-grid {
@@ -1302,6 +1355,19 @@ body {
     .stats-grid {
         grid-template-columns: 1fr;
         gap: 40px;
+    }
+
+    .company-logos {
+        gap: 30px;
+    }
+
+    .company-logo-item {
+        padding: 20px 30px;
+        min-width: 150px;
+    }
+
+    .company-logo {
+        max-width: 120px;
     }
 
     .features-grid {
