@@ -236,6 +236,87 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // Waitlist form for Terminal theme (Bloomberg for Kalshi)
+    const waitlistForm = document.getElementById('waitlist-form');
+    if (waitlistForm) {
+        const emailInput = waitlistForm.querySelector('#email');
+        const submitBtn = waitlistForm.querySelector('button[type="submit"]');
+        const successMsg = document.getElementById('form-success');
+        const supabaseBaseUrl = window.FeedbackConfig && window.FeedbackConfig.baseUrl;
+
+        const isValidEmail = (email) => {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+        };
+
+        waitlistForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = (emailInput.value || '').trim();
+            if (!isValidEmail(email)) {
+                emailInput.focus();
+                emailInput.setAttribute('aria-invalid', 'true');
+                emailInput.style.borderColor = 'rgba(255, 71, 87, 0.8)';
+                return;
+            } else {
+                emailInput.removeAttribute('aria-invalid');
+                emailInput.style.borderColor = '';
+            }
+
+            submitBtn.disabled = true;
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Joining…';
+
+            try {
+                if (supabaseBaseUrl && window.FeedbackConfig && window.FeedbackConfig.apiKey) {
+                    const response = await fetch(`${supabaseBaseUrl}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            apiKey: window.FeedbackConfig.apiKey,
+                            rating: 5,
+                            text: `Waitlist Signup - AgentBase Terminal\n\nEmail: ${email}\nSource: Bloomberg for Kalshi waitlist\n\nTimestamp: ${new Date().toISOString()}`,
+                            timestamp: new Date().toISOString()
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Backend responded with ${response.status}`);
+                    }
+                } else {
+                    console.warn('FeedbackConfig not set. Falling back to localStorage.');
+                    const key = 'waitlist_signups';
+                    const existing = JSON.parse(localStorage.getItem(key) || '[]');
+                    existing.push({ email, source: 'terminal_waitlist', ts: new Date().toISOString() });
+                    localStorage.setItem(key, JSON.stringify(existing));
+                }
+
+                // Show success UI
+                if (successMsg) {
+                    successMsg.hidden = false;
+                }
+                waitlistForm.reset();
+                submitBtn.textContent = 'You\'re in!';
+                submitBtn.style.background = '#00D26A';
+            } catch (err) {
+                console.error('Waitlist submission error:', err);
+                alert('Sorry, something went wrong. Please try again.');
+                submitBtn.textContent = originalText;
+            } finally {
+                submitBtn.disabled = false;
+            }
+        });
+
+        emailInput.addEventListener('blur', () => {
+            if (!emailInput.value) return;
+            if (isValidEmail(emailInput.value)) {
+                emailInput.removeAttribute('aria-invalid');
+                emailInput.style.borderColor = '';
+            }
+        });
+    }
 });
 
 // Add CSS for ripple effect

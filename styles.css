@@ -1688,3 +1688,525 @@ body {
         font-size: 1.1rem;
     }
 }
+
+/* ========================================
+   TERMINAL THEME - Bloomberg for Kalshi
+   ======================================== */
+
+.terminal-theme {
+    --terminal-green: #00D26A;
+    --terminal-red: #FF4757;
+    --terminal-cyan: #00D4FF;
+    --terminal-amber: #FFB800;
+    --terminal-bg: #0a0a0f;
+    --terminal-surface: #12121a;
+    --terminal-border: rgba(255, 255, 255, 0.08);
+}
+
+/* Minimal Nav for Terminal Theme */
+.nav-minimal {
+    background: rgba(10, 10, 15, 0.8);
+    border: 1px solid var(--terminal-border);
+    max-width: 600px;
+}
+
+.nav-minimal .nav-container {
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 50px;
+}
+
+.nav-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(0, 210, 106, 0.1);
+    border: 1px solid rgba(0, 210, 106, 0.3);
+    border-radius: 20px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--terminal-green);
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.status-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--terminal-green);
+    letter-spacing: 0.5px;
+}
+
+/* Hero Terminal Theme */
+.hero-terminal {
+    min-height: 100vh;
+    background: var(--terminal-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 120px;
+    position: relative;
+    overflow: hidden;
+}
+
+.terminal-grid-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+}
+
+.hero-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero-centered .hero-content {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.terminal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 20px;
+    margin-bottom: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--terminal-cyan);
+}
+
+.badge-icon {
+    color: var(--terminal-cyan);
+}
+
+.hero-title-large {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-tagline-terminal {
+    font-size: 1.25rem;
+    color: var(--text-gray);
+    max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+/* Waitlist Form */
+.waitlist-form-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.waitlist-form {
+    width: 100%;
+}
+
+.waitlist-input-group {
+    display: flex;
+    gap: 12px;
+    background: var(--terminal-surface);
+    border: 1px solid var(--terminal-border);
+    border-radius: 12px;
+    padding: 6px;
+}
+
+.waitlist-input-group input[type="email"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-white);
+    padding: 14px 16px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.waitlist-input-group input[type="email"]::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.waitlist-btn {
+    background: var(--terminal-green);
+    color: #000;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.waitlist-btn:hover {
+    background: #00e676;
+    transform: translateY(-1px);
+}
+
+.waitlist-note {
+    margin-top: 16px;
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+.waitlist-count {
+    color: var(--terminal-green);
+    font-weight: 600;
+}
+
+/* Terminal Preview Window */
+.terminal-preview {
+    margin-top: 60px;
+    width: 100%;
+    max-width: 700px;
+    padding: 0 20px;
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.terminal-window {
+    position: relative;
+    background: var(--terminal-surface);
+    border: 1px solid var(--terminal-border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 100px rgba(0, 212, 255, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.terminal-window:hover {
+    transform: scale(1.02);
+    box-shadow: 
+        0 25px 70px rgba(0, 0, 0, 0.6),
+        0 0 120px rgba(0, 212, 255, 0.08);
+}
+
+.terminal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    border-radius: 12px;
+}
+
+.terminal-window:hover .terminal-overlay {
+    opacity: 1;
+}
+
+.overlay-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.overlay-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--terminal-cyan);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.overlay-cta {
+    background: var(--terminal-green);
+    color: #000;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.overlay-cta:hover {
+    background: #00e676;
+    transform: translateY(-2px);
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--terminal-border);
+}
+
+.terminal-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.terminal-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.terminal-dots .dot.red { background: #ff5f57; }
+.terminal-dots .dot.yellow { background: #febc2e; }
+.terminal-dots .dot.green { background: #28c840; }
+
+.terminal-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-gray);
+}
+
+.terminal-body {
+    padding: 8px 0;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.terminal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.terminal-row {
+    display: grid;
+    grid-template-columns: 180px 70px 70px 1fr;
+    gap: 16px;
+    padding: 12px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    transition: background 0.2s ease;
+    align-items: center;
+}
+
+.terminal-row:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.terminal-row:last-child {
+    border-bottom: none;
+}
+
+.terminal-label {
+    color: var(--text-white);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.terminal-value {
+    text-align: right;
+    font-weight: 500;
+}
+
+.terminal-value.up { color: var(--terminal-green); }
+.terminal-value.down { color: var(--terminal-red); }
+
+.terminal-change {
+    text-align: right;
+}
+
+.terminal-change.up { color: var(--terminal-green); }
+.terminal-change.down { color: var(--terminal-red); }
+
+.terminal-volume {
+    color: var(--text-gray);
+    text-align: right;
+}
+
+.terminal-event {
+    color: var(--terminal-cyan);
+    text-align: right;
+    font-size: 11px;
+    opacity: 0.8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Features Terminal Section */
+.features-terminal {
+    background: var(--terminal-bg);
+    padding: 80px 0;
+    border-top: 1px solid var(--terminal-border);
+}
+
+.features-grid-terminal {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.feature-card-terminal {
+    background: var(--terminal-surface);
+    border: 1px solid var(--terminal-border);
+    border-radius: 12px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.feature-card-terminal:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    transform: translateY(-4px);
+}
+
+.feature-icon-terminal {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 12px;
+    color: var(--terminal-cyan);
+}
+
+.feature-card-terminal h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-white);
+    margin-bottom: 12px;
+}
+
+.feature-card-terminal p {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    line-height: 1.5;
+}
+
+/* Team Credentials Terminal */
+.team-credentials-terminal {
+    background: var(--terminal-bg);
+    border-top: 1px solid var(--terminal-border);
+    padding: 60px 0;
+}
+
+.section-title-sm {
+    font-size: 1.5rem;
+    color: var(--text-gray);
+    background: none;
+    -webkit-text-fill-color: var(--text-gray);
+}
+
+/* Footer Terminal */
+.footer-terminal {
+    background: var(--terminal-bg);
+    border-top: 1px solid var(--terminal-border);
+    padding: 30px 0;
+}
+
+/* Terminal Theme Responsive */
+@media (max-width: 768px) {
+    .hero-title-large {
+        font-size: 2.5rem;
+    }
+
+    .hero-tagline-terminal {
+        font-size: 1.1rem;
+    }
+
+    .waitlist-input-group {
+        flex-direction: column;
+        padding: 12px;
+    }
+
+    .waitlist-btn {
+        width: 100%;
+    }
+
+    .terminal-row {
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        padding: 10px 16px;
+    }
+
+    .terminal-change,
+    .terminal-event {
+        display: none;
+    }
+
+    .features-grid-terminal {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .nav-minimal {
+        max-width: calc(100% - 30px);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-terminal {
+        padding-top: 100px;
+    }
+
+    .hero-title-large {
+        font-size: 2rem;
+    }
+
+    .terminal-badge {
+        font-size: 11px;
+        padding: 6px 12px;
+    }
+
+    .terminal-preview {
+        margin-top: 40px;
+    }
+
+    .terminal-row {
+        font-size: 12px;
+    }
+}

@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgentBase — Multiply inbound leads with an AI-first client acquisition strategy</title>
+    <title>AgentBase - Fast, Institutional Grade Events Tracking for Kalshi</title>
     <meta name="google-site-verification" content="byMWjpAq_Y1meZ05m9rlKWD6XCdqPczPoJ6mMa4mr2w" />
     <meta name="description"
-        content="Grow your client base with an AI-first client acquisition strategy. Get found before your competition in Google AI summaries, ChatGPT, Perplexity and Reddit. Get a free AI visibility kit to boost inbound leads.">
+        content="The Bloomberg Terminal for Kalshi. Real-time analytics, institutional-grade data, and professional trading tools for prediction markets. Join the waitlist.">
     <meta name="keywords"
-        content="Client Acquisition Strategy, grow client base, more prospects, prospecting, lead magnets, inbound leads, digital marketing, AI search, Reddit, ChatGPT">
+        content="Kalshi, prediction markets, event contracts, trading terminal, Bloomberg, real-time data, analytics, institutional trading">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <!-- Google tag (gtag.js) -->
@@ -20,86 +20,175 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-FTB5NSQNWW');
 </script>
-<body>
-    <!-- Navigation -->
-    <nav class="nav">
+<body class="terminal-theme">
+    <!-- Floating Nav -->
+    <nav class="nav nav-minimal">
         <div class="nav-container">
             <div class="nav-logo">
                 <span class="logo-text">AgentBase</span>
             </div>
-
-            <!-- Mobile Menu Button -->
-            <button class="mobile-menu-btn" aria-label="Toggle menu">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-
-            <div class="nav-links">
-                <a href="#how-it-works" class="nav-link">How the System Works</a>
-                <!-- <a href="#why-it-matters" class="nav-link">Why it Matters</a> -->
-                <a href="#free-ai-files" class="nav-link">Free AI Visibility Kit</a>
-                <a href="#blog" class="nav-link">Blog</a>
-                <a href="pricing.html" class="nav-link">Pricing</a>
-                <a href="https://calendly.com/founders-useagentbase/30min" class="nav-cta" target="_blank">Schedule a
-                    Demo</a>
+            <div class="nav-status">
+                <span class="status-dot"></span>
+                <span class="status-text">LIVE</span>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
+    <section class="hero hero-terminal">
+        <div class="terminal-grid-bg"></div>
+        <div class="hero-container hero-centered">
             <div class="hero-content">
-                <h1 class="hero-title">More inbound leads. AI-first client acquisition.</h1>
-                <p class="hero-tagline">Get found before your competition across Google AI summaries, ChatGPT, and
-                    Reddit. More prospects. Faster growth.</p>
-                <div class="hero-cta-group">
-                    <a href="https://calendly.com/founders-useagentbase/30min" class="hero-cta" target="_blank">Schedule
-                        a Demo</a>
-                    <a href="#free-ai-files" class="hero-cta hero-cta-secondary">Get the free AI visibility kit</a>
+                <div class="terminal-badge">
+                    <span class="badge-icon">◆</span>
+                    <span>Bloomberg for Kalshi</span>
+                </div>
+                <h1 class="hero-title hero-title-large">Fast, Institutional Grade<br>Events Tracking</h1>
+                <p class="hero-tagline hero-tagline-terminal">Catch newsbreaks first. Trade with an edge.</p>
+                
+                <!-- Waitlist Form -->
+                <div class="waitlist-form-container">
+                    <form id="waitlist-form" class="waitlist-form" novalidate>
+                        <div class="waitlist-input-group">
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            <button type="submit" class="waitlist-btn">Join Waitlist</button>
+                        </div>
+                        <p id="form-success" class="form-success" aria-live="polite" hidden>You're on the list. We'll be in touch soon.</p>
+                    </form>
+                    <p class="waitlist-note">Get notified at launch. Be among the first traders in.</p>
                 </div>
             </div>
+        </div>
 
-            <div class="hero-visual">
-                <div class="glass-orb"></div>
-                <img src="assets/favicon.png" alt="AgentBase Logo" class="floating-logo">
+        <!-- Animated Terminal Preview -->
+        <div class="terminal-preview">
+            <div class="terminal-window">
+                <div class="terminal-overlay">
+                    <div class="overlay-content">
+                        <span class="overlay-badge">Coming Soon</span>
+                        <a href="#waitlist-form" class="overlay-cta">Join the Waitlist</a>
+                    </div>
+                </div>
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <span class="terminal-title">AgentBase Terminal</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-row">
+                        <span class="terminal-label">FED-RATE-CUT-MAR</span>
+                        <span class="terminal-value up">67.4¢</span>
+                        <span class="terminal-change up">+2.3%</span>
+                        <span class="terminal-event">Powell hints at cuts → Reuters 2m ago</span>
+                    </div>
+                    <div class="terminal-row">
+                        <span class="terminal-label">BTC-100K-Q1</span>
+                        <span class="terminal-value up">42.1¢</span>
+                        <span class="terminal-change up">+5.7%</span>
+                        <span class="terminal-event">ETF inflows surge → Bloomberg 8m ago</span>
+                    </div>
+                    <div class="terminal-row">
+                        <span class="terminal-label">TRUMP-WIN-2028</span>
+                        <span class="terminal-value down">31.8¢</span>
+                        <span class="terminal-change down">-1.2%</span>
+                        <span class="terminal-event">New poll released → AP 15m ago</span>
+                    </div>
+                    <div class="terminal-row">
+                        <span class="terminal-label">SPX-5500-EOY</span>
+                        <span class="terminal-value up">55.2¢</span>
+                        <span class="terminal-change up">+0.8%</span>
+                        <span class="terminal-event">CPI data beats → CNBC 22m ago</span>
+                    </div>
+                    <div class="terminal-row">
+                        <span class="terminal-label">RECESSION-2026</span>
+                        <span class="terminal-value down">23.5¢</span>
+                        <span class="terminal-change down">-3.1%</span>
+                        <span class="terminal-event">Jobs report strong → WSJ 31m ago</span>
+                    </div>
+                    <div class="terminal-row">
+                        <span class="terminal-label">GOVT-SHUTDOWN-FEB</span>
+                        <span class="terminal-value up">34.2¢</span>
+                        <span class="terminal-change up">+8.4%</span>
+                        <span class="terminal-event">Budget talks stall → Politico 5m ago</span>
+                    </div>
+                    <div class="terminal-row">
+                        <span class="terminal-label">ETH-5K-Q2</span>
+                        <span class="terminal-value up">28.7¢</span>
+                        <span class="terminal-change up">+3.2%</span>
+                        <span class="terminal-event">Upgrade announced → CoinDesk 12m ago</span>
+                    </div>
+                    <div class="terminal-row">
+                        <span class="terminal-label">AAPL-250-MAR</span>
+                        <span class="terminal-value down">41.3¢</span>
+                        <span class="terminal-change down">-2.1%</span>
+                        <span class="terminal-event">China sales slip → FT 18m ago</span>
+                    </div>
+                    <div class="terminal-row">
+                        <span class="terminal-label">UKRAINE-CEASEFIRE</span>
+                        <span class="terminal-value up">22.8¢</span>
+                        <span class="terminal-change up">+4.6%</span>
+                        <span class="terminal-event">Peace talks resume → BBC 25m ago</span>
+                    </div>
+                    <div class="terminal-row">
+                        <span class="terminal-label">TSLA-ROBOTAXI-2026</span>
+                        <span class="terminal-value down">18.5¢</span>
+                        <span class="terminal-change down">-5.3%</span>
+                        <span class="terminal-event">Delay rumors → Electrek 33m ago</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Quick Win: Free AI Files -->
-    <section id="free-ai-files" class="quick-win">
+    <!-- Features Section -->
+    <section class="features-terminal">
         <div class="container">
-            <h2 class="section-title">Immediate Win: rank higher in AI search with a free visibility kit</h2>
-            <p class="section-subtext">We’ll send you a simple set of files and instructions. Add them to your site to
-                improve how AI models parse and recommend your content—fast.</p>
-
-            <div class="form-card">
-                <form id="ai-files-form" class="email-form" novalidate>
-                    <div class="input-group">
-                        <label for="email" class="sr-only">Email address</label>
-                        <input type="email" id="email" name="email" placeholder="Enter your work email" required>
+            <div class="features-grid-terminal">
+                <div class="feature-card-terminal">
+                    <div class="feature-icon-terminal">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
                     </div>
-                    <div class="optional-field">
-                        <label for="website" class="sr-only">Website (optional)</label>
-                        <input type="url" id="website" name="website" placeholder="Your website (Optional, please enter if using Gmail/Outlook email id)">
+                    <h3>Price Alerts</h3>
+                    <p>Custom triggers when contracts hit your entry or exit points</p>
+                </div>
+                <div class="feature-card-terminal">
+                    <div class="feature-icon-terminal">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                            <path d="M8 21h8M12 17v4"></path>
+                        </svg>
                     </div>
-                    <button type="submit" class="cta-button">Get the files</button>
-                    <p class="form-note">No credit card required. We’ll generate a site‑specific AI setup for you. </p>
-                    <p id="form-success" class="form-success" aria-live="polite" hidden>Thanks! Check your email shortly
-                        for the files.</p>
-                </form>
+                    <h3>Multi-Source Aggregation</h3>
+                    <p>News, social, and market data unified in one view</p>
+                </div>
+                <div class="feature-card-terminal">
+                    <div class="feature-icon-terminal">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"></path>
+                        </svg>
+                    </div>
+                    <h3>Cross-Market Signals</h3>
+                    <p>Spot arbitrage and correlation opportunities across events</p>
+                </div>
             </div>
         </div>
     </section>
+
     <!-- Team Credentials Section -->
-    <section class="team-credentials">
+    <section class="team-credentials team-credentials-terminal">
         <div class="container">
-            <h2 class="section-title">Engineered by alumni of</h2>
+            <h2 class="section-title section-title-sm">Built by alumni of</h2>
             <div class="company-logos">
                 <div class="company-logo-item">
                     <img src="assets/uber-logo.png" alt="Uber" class="company-logo">
@@ -113,207 +202,25 @@
             </div>
         </div>
     </section>
-    <!-- The Shift to AI Section -->
-    <section class="shift-section">
-        <div class="container">
-            <h2 class="section-title">Get found before your competition in AI-first search</h2>
-            <p class="section-subtext">Prospects ask ChatGPT, Google AI Overviews, and Reddit before they ever hit your
-                website. We make sure your expertise shows up—so you get more inbound leads.</p>
-        </div>
-    </section>
-
-    <!-- Why it Matters Section -->
-    <section id="why-it-matters" class="why-matters">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">600%</div>
-                    <div class="stat-label">increase in AI mentions</div>
-                </div>
-                <div class="stat-content">
-                    <h3 class="section-title">Why it matters for inbound growth</h3>
-                    <p class="section-text">Clients discover you where they search today—not just on Google, but inside
-                        AI summaries and communities. Better AI visibility = more prospects and a growing client base.
-                    </p>
-                    <p class="highlight-text">Higher AI visibility fuels consistent inbound leads.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="how-works">
-        <div class="container">
-            <h2 class="section-title">How it works: AI-first client acquisition</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-icon" aria-hidden="true">
-                        <!-- AI-ready content and structure icon (CPU/AI) -->
-                        <svg class="icon" width="56" height="56" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" stroke-width="2" />
-                            <path d="M10 3v2M14 3v2M10 19v2M14 19v2M3 10h2M3 14h2M19 10h2M19 14h2" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" />
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">AI-ready content and structure</h3>
-                    <p class="feature-text">We implement AI-readable sitemaps, content guidance, and schema that make
-                        your expertise easy for AI to parse and cite in answers.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon" aria-hidden="true">
-                        <!-- Lead magnet icon (Funnel) -->
-                        <svg class="icon" width="56" height="56" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 5h18l-7 8v5a2 2 0 0 1-2 2h-2v-7L3 5Z" stroke="currentColor" stroke-width="2"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Lead Magnets that convert</h3>
-                    <p class="feature-text">We create on-site assets that attract and capture inbound interest from AI
-                        and community traffic.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon" aria-hidden="true">
-                        <!-- Prospecting channels icon (Network/Share nodes) -->
-                        <svg class="icon" width="56" height="56" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="6" cy="12" r="2.5" stroke="currentColor" stroke-width="2" />
-                            <circle cx="18" cy="6" r="2.5" stroke="currentColor" stroke-width="2" />
-                            <circle cx="18" cy="18" r="2.5" stroke="currentColor" stroke-width="2" />
-                            <path d="M8.2 10.9l6.0-3.3M8.2 13.1l6.0 3.3" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" />
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Prospecting via Reddit and AI channels</h3>
-                    <p class="feature-text">We seed and structure content to earn mentions in Reddit threads and AI
-                        responses—driving qualified inbound.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon" aria-hidden="true">
-                        <!-- Client acquisition strategy icon (Target) -->
-                        <svg class="icon" width="56" height="56" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" />
-                            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" />
-                            <circle cx="12" cy="12" r="1" fill="currentColor" />
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Client Acquisition Strategy, not just tactics</h3>
-                    <p class="feature-text">A repeatable system to grow your client base month over month.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Section -->
-    <section id="blog" class="blog-section">
-        <div class="container">
-            <h2 class="section-title">Latest Insights</h2>
-            <p class="section-subtext">Learn how to grow your client base with AI-first strategies and expert insights.</p>
-            
-            <div class="blog-grid">
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <div class="blog-placeholder">
-                            <svg class="blog-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                                <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span class="blog-date">Latest</span>
-                            <span class="blog-category">White-Label AI</span>
-                        </div>
-                        <h3 class="blog-title">Unlocking Scalability: A Guide to White-Label AI Content Optimization</h3>
-                        <p class="blog-excerpt">Learn how white-label AI empowers marketing agencies to scale operations, enhance service offerings, and deliver superior content performance for clients.</p>
-                        <a href="blogs/blog-ai-search-client-acquisition.html" class="blog-link">Read more →</a>
-                    </div>
-                </article>
-
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <div class="blog-placeholder">
-                            <svg class="blog-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-                                <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span class="blog-date">Latest</span>
-                            <span class="blog-category">AI Search</span>
-                        </div>
-                        <h3 class="blog-title">Navigating the AI Summary Landscape</h3>
-                        <p class="blog-excerpt">Learn strategies for AI-driven businesses to optimize web presence in the era of AI summaries and Google AI Overviews.</p>
-                        <a href="blogs/navigating-ai-summary-landscape.html" class="blog-link">Read more →</a>
-                    </div>
-                </article>
-
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <div class="blog-placeholder">
-                            <svg class="blog-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
-                                <path d="M3 9h18M9 21V9" stroke="currentColor" stroke-width="2"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span class="blog-date">Latest</span>
-                            <span class="blog-category">SEO Strategy</span>
-                        </div>
-                        <h3 class="blog-title">Navigating the AI Search Era</h3>
-                        <p class="blog-excerpt">Strategies for maintaining and growing qualified website traffic in the AI search era. Learn how to adapt your SEO and content strategy.</p>
-                        <a href="blogs/navigating-ai-search-era.html" class="blog-link">Read more →</a>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final CTA Section -->
-    <section class="final-cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">See the full inbound growth system in action</h2>
-                <a href="https://calendly.com/founders-useagentbase/30min" class="cta-button" target="_blank">Schedule a
-                    Demo</a>
-                <div class="cta-secondary">
-                    <a href="#free-ai-files" class="footer-link">Or get the free AI visibility kit first</a>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer footer-terminal">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">AgentBase</div>
                 <div class="footer-links">
-                    <a href="#how-it-works" class="footer-link">How it Works</a>
-                    <a href="#why-it-matters" class="footer-link">Why it Matters</a>
-                    <a href="#blog" class="footer-link">Blog</a>
-                    <a href="pricing.html" class="footer-link">Pricing</a>
                     <a href="privacy.html" class="footer-link">Privacy Policy</a>
-                    <a href="https://calendly.com/founders-useagentbase/30min" class="footer-link"
-                        target="_blank">Schedule a Demo</a>
-                    <a href="https://www.useagentbase.dev/sitemap.xml" class="footer-link">Sitemap</a>
+                    <a href="mailto:hello@useagentbase.dev" class="footer-link">Contact</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Inline config for backend submission (replace placeholders) -->
+    <!-- Inline config for backend submission -->
     <script>
         window.FeedbackConfig = {
-            baseUrl: 'https://jedbptsmqiiamizbooiz.supabase.co/functions/v1/feedback', // TODO: replace with your Supabase project URL
-            apiKey: 'widget_mekzbste_ho7r1j1wevh'        // TODO: replace with your Edge Function secret
+            baseUrl: 'https://jedbptsmqiiamizbooiz.supabase.co/functions/v1/feedback',
+            apiKey: 'widget_mekzbste_ho7r1j1wevh'
         };
     </script>
     <script src="script.js"></script>
