@@ -4,15 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgentBase - Fast, Institutional Grade Events Tracking for Kalshi</title>
+    <title>Signal Scout - AI-Powered Alerts for Kalshi Prediction Markets</title>
     <meta name="google-site-verification" content="byMWjpAq_Y1meZ05m9rlKWD6XCdqPczPoJ6mMa4mr2w" />
     <meta name="description"
-        content="The Bloomberg Terminal for Kalshi. Real-time analytics, institutional-grade data, and professional trading tools for prediction markets. Join the waitlist.">
+        content="Never miss a market move. Get instant AI-analyzed alerts when news breaks that could move your subscribed Kalshi prediction markets. Download the app today.">
     <meta name="keywords"
-        content="Kalshi, prediction markets, event contracts, trading terminal, Bloomberg, real-time data, analytics, institutional trading">
+        content="Kalshi, prediction markets, event contracts, AI alerts, market tracking, news analysis, Signal Scout, trading app">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/SignalScoutLogo.png">
+    <link rel="apple-touch-icon" href="assets/SignalScoutLogo.png">
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FTB5NSQNWW"></script>
@@ -22,171 +23,138 @@
   gtag('js', new Date());
   gtag('config', 'G-FTB5NSQNWW');
 </script>
-<body class="terminal-theme">
-    <!-- Floating Nav -->
-    <nav class="nav nav-minimal">
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
         <div class="nav-container">
             <div class="nav-logo">
-                <span class="logo-text">AgentBase</span>
+                <span class="logo-text">Signal Scout</span>
             </div>
-            <div class="nav-status">
-                <span class="status-dot"></span>
-                <span class="status-text">LIVE</span>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="https://discord.com/invite/qpT96sQ2mD" class="nav-link" target="_blank" rel="noopener noreferrer">Discord</a>
+                <a href="https://linktr.ee/signalscoutapp" class="nav-cta" target="_blank" rel="noopener noreferrer">Download App</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero hero-terminal">
-        <div class="terminal-grid-bg"></div>
-        <div class="hero-container hero-centered">
+    <section class="hero">
+        <div class="hero-container">
             <div class="hero-content">
-                <div class="terminal-badge">
-                    <span class="badge-icon">◆</span>
-                    <span>Bloomberg for Kalshi</span>
-                </div>
-                <h1 class="hero-title hero-title-large">Fast, Institutional Grade<br>Events Tracking</h1>
-                <p class="hero-tagline hero-tagline-terminal">Catch newsbreaks first. Trade with an edge.</p>
-                
-                <!-- Waitlist Form -->
-                <div class="waitlist-form-container">
-                    <form id="waitlist-form" class="waitlist-form" novalidate>
-                        <div class="waitlist-input-group">
-                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                            <button type="submit" class="waitlist-btn">Join Waitlist</button>
-                        </div>
-                        <p id="form-success" class="form-success" aria-live="polite" hidden>You're on the list. We'll be in touch soon.</p>
-                    </form>
-                    <p class="waitlist-note">Get notified at launch. Be among the first traders in.</p>
+                <h1 class="hero-title">Fast, Institutional Grade<br>Events Tracking</h1>
+                <p class="hero-tagline">Catch newsbreaks first. Trade with an edge.</p>
+
+                <div class="download-section">
+                    <div class="qr-code">
+                        <img src="assets/linktree_qr.png" alt="Scan to download" class="qr-code-img">
+                        <p class="qr-code-text">Download Signal Scout</p>
+                    </div>
+                    <div class="download-badges">
+                        <a href="#" class="store-badge" aria-label="Download on the App Store">
+                            <img src="assets/icons/appstore.svg" alt="Download on the App Store">
+                        </a>
+                        <a href="#" class="store-badge" aria-label="Get it on Google Play">
+                            <img src="assets/icons/googleplay.png" alt="Get it on Google Play">
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Animated Terminal Preview -->
-        <div class="terminal-preview">
-            <div class="terminal-window">
-                <div class="terminal-overlay">
-                    <div class="overlay-content">
-                        <span class="overlay-badge">Coming Soon</span>
-                        <a href="#waitlist-form" class="overlay-cta">Join the Waitlist</a>
-                    </div>
-                </div>
-                <div class="terminal-header">
-                    <div class="terminal-dots">
-                        <span class="dot red"></span>
-                        <span class="dot yellow"></span>
-                        <span class="dot green"></span>
-                    </div>
-                    <span class="terminal-title">AgentBase Terminal</span>
-                </div>
-                <div class="terminal-body">
-                    <div class="terminal-row">
-                        <span class="terminal-label">FED-RATE-CUT-MAR</span>
-                        <span class="terminal-value up">67.4¢</span>
-                        <span class="terminal-change up">+2.3%</span>
-                        <span class="terminal-event">Powell hints at cuts → Reuters 2m ago</span>
-                    </div>
-                    <div class="terminal-row">
-                        <span class="terminal-label">BTC-100K-Q1</span>
-                        <span class="terminal-value up">42.1¢</span>
-                        <span class="terminal-change up">+5.7%</span>
-                        <span class="terminal-event">ETF inflows surge → Bloomberg 8m ago</span>
-                    </div>
-                    <div class="terminal-row">
-                        <span class="terminal-label">TRUMP-WIN-2028</span>
-                        <span class="terminal-value down">31.8¢</span>
-                        <span class="terminal-change down">-1.2%</span>
-                        <span class="terminal-event">New poll released → AP 15m ago</span>
-                    </div>
-                    <div class="terminal-row">
-                        <span class="terminal-label">SPX-5500-EOY</span>
-                        <span class="terminal-value up">55.2¢</span>
-                        <span class="terminal-change up">+0.8%</span>
-                        <span class="terminal-event">CPI data beats → CNBC 22m ago</span>
-                    </div>
-                    <div class="terminal-row">
-                        <span class="terminal-label">RECESSION-2026</span>
-                        <span class="terminal-value down">23.5¢</span>
-                        <span class="terminal-change down">-3.1%</span>
-                        <span class="terminal-event">Jobs report strong → WSJ 31m ago</span>
-                    </div>
-                    <div class="terminal-row">
-                        <span class="terminal-label">GOVT-SHUTDOWN-FEB</span>
-                        <span class="terminal-value up">34.2¢</span>
-                        <span class="terminal-change up">+8.4%</span>
-                        <span class="terminal-event">Budget talks stall → Politico 5m ago</span>
-                    </div>
-                    <div class="terminal-row">
-                        <span class="terminal-label">ETH-5K-Q2</span>
-                        <span class="terminal-value up">28.7¢</span>
-                        <span class="terminal-change up">+3.2%</span>
-                        <span class="terminal-event">Upgrade announced → CoinDesk 12m ago</span>
-                    </div>
-                    <div class="terminal-row">
-                        <span class="terminal-label">AAPL-250-MAR</span>
-                        <span class="terminal-value down">41.3¢</span>
-                        <span class="terminal-change down">-2.1%</span>
-                        <span class="terminal-event">China sales slip → FT 18m ago</span>
-                    </div>
-                    <div class="terminal-row">
-                        <span class="terminal-label">UKRAINE-CEASEFIRE</span>
-                        <span class="terminal-value up">22.8¢</span>
-                        <span class="terminal-change up">+4.6%</span>
-                        <span class="terminal-event">Peace talks resume → BBC 25m ago</span>
-                    </div>
-                    <div class="terminal-row">
-                        <span class="terminal-label">TSLA-ROBOTAXI-2026</span>
-                        <span class="terminal-value down">18.5¢</span>
-                        <span class="terminal-change down">-5.3%</span>
-                        <span class="terminal-event">Delay rumors → Electrek 33m ago</span>
-                    </div>
-                </div>
+            <div class="hero-visual">
+                <img src="assets/signal-scout/screenshots/iphone/discover.png" alt="Signal Scout - Discover Kalshi prediction markets" class="hero-phone-screenshot">
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features-terminal">
+    <section id="features" class="features-section">
         <div class="container">
-            <div class="features-grid-terminal">
-                <div class="feature-card-terminal">
-                    <div class="feature-icon-terminal">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <h2 class="section-title">Unlock the full potential of Kalshi</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                         </svg>
                     </div>
-                    <h3>Price Alerts</h3>
-                    <p>Custom triggers when contracts hit your entry or exit points</p>
+                    <h3>AI-Powered Alerts</h3>
+                    <p>Get real-time, AI-analyzed news alerts for your subscribed markets. Understand how breaking news could impact market outcomes.</p>
                 </div>
-                <div class="feature-card-terminal">
-                    <div class="feature-icon-terminal">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="3" width="20" height="14" rx="2"></rect>
-                            <path d="M8 21h8M12 17v4"></path>
+                <div class="feature-card">
+                    <div class="feature-card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="M21 21l-4.35-4.35"></path>
                         </svg>
                     </div>
-                    <h3>Multi-Source Aggregation</h3>
-                    <p>News, social, and market data unified in one view</p>
+                    <h3>Discover &amp; Filter</h3>
+                    <p>Browse trending markets across Politics, Economics, Sports, and more. Filter by category, volume, closing date, or price range.</p>
                 </div>
-                <div class="feature-card-terminal">
-                    <div class="feature-icon-terminal">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="18" cy="5" r="3"></circle>
-                            <circle cx="6" cy="12" r="3"></circle>
-                            <circle cx="18" cy="19" r="3"></circle>
-                            <path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"></path>
+                <div class="feature-card">
+                    <div class="feature-card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
                         </svg>
                     </div>
-                    <h3>Cross-Market Signals</h3>
-                    <p>Spot arbitrage and correlation opportunities across events</p>
+                    <h3>Track Subscriptions</h3>
+                    <p>Subscribe to the markets you care about and get a personalized feed of relevant news and price movements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works-section">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+
+            <div class="steps-list">
+                <div class="step-row">
+                    <div class="step-screenshot">
+                        <img src="assets/signal-scout/screenshots/iphone/discover.png" alt="Discover Kalshi prediction markets" class="step-phone">
+                    </div>
+                    <div class="step-text">
+                        <h3 class="step-number">1. Discover Markets</h3>
+                        <p>Browse and search Kalshi prediction markets across categories. Filter by trending, volume, price range, or closing date to find the markets that matter to you.</p>
+                    </div>
+                </div>
+
+                <div class="step-row step-row-reverse">
+                    <div class="step-screenshot">
+                        <img src="assets/signal-scout/screenshots/iphone/onboarding.png" alt="Subscribe and track Kalshi markets" class="step-phone">
+                    </div>
+                    <div class="step-text">
+                        <h3 class="step-number">2. Subscribe &amp; Track</h3>
+                        <p>Subscribe to markets you want to follow. We'll monitor price movements and breaking news for you, so you never miss an opportunity.</p>
+                    </div>
+                </div>
+
+                <div class="step-row">
+                    <div class="step-screenshot">
+                        <img src="assets/signal-scout/screenshots/iphone/alerts-detail.png" alt="AI-powered market alerts with news analysis" class="step-phone">
+                    </div>
+                    <div class="step-text">
+                        <h3 class="step-number">3. Get AI Alerts</h3>
+                        <p>Receive intelligent alerts with AI-analyzed summaries explaining how news could impact your markets. Jump straight to Kalshi to act.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Team Credentials Section -->
-    <section class="team-credentials team-credentials-terminal">
+    <section class="team-credentials">
         <div class="container">
             <h2 class="section-title section-title-sm">Built by alumni of</h2>
             <div class="company-logos">
@@ -203,26 +171,45 @@
         </div>
     </section>
 
+    <!-- Final CTA Section -->
+    <section id="download" class="final-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Start Trading Smarter</h2>
+                <p class="section-subtext">Join traders using Signal Scout to catch market-moving news first.</p>
+                <div class="download-section">
+                    <div class="qr-code">
+                        <img src="assets/linktree_qr.png" alt="Scan to download" class="qr-code-img">
+                        <p class="qr-code-text">Download Signal Scout</p>
+                    </div>
+                    <div class="download-badges download-badges-center">
+                        <a href="#" class="store-badge" aria-label="Download on the App Store">
+                            <img src="assets/icons/appstore.svg" alt="Download on the App Store">
+                        </a>
+                        <a href="#" class="store-badge" aria-label="Get it on Google Play">
+                            <img src="assets/icons/googleplay.png" alt="Get it on Google Play">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="footer footer-terminal">
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">AgentBase</div>
+                <div class="footer-logo">Signal Scout</div>
                 <div class="footer-links">
                     <a href="privacy.html" class="footer-link">Privacy Policy</a>
                     <a href="mailto:hello@useagentbase.dev" class="footer-link">Contact</a>
+                    <a href="https://discord.com/invite/qpT96sQ2mD" class="footer-link" target="_blank" rel="noopener noreferrer">Join the Discord</a>
                 </div>
+                <div class="footer-copyright">&copy; 2026 Signal Scout. All rights reserved.</div>
             </div>
         </div>
     </footer>
 
-    <!-- Inline config for backend submission -->
-    <script>
-        window.FeedbackConfig = {
-            baseUrl: 'https://jedbptsmqiiamizbooiz.supabase.co/functions/v1/feedback',
-            apiKey: 'widget_mekzbste_ho7r1j1wevh'
-        };
-    </script>
     <script src="script.js"></script>
 </body>
 

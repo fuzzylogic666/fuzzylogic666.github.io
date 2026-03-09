@@ -1,9 +1,3 @@
-// Optional global config (set these in a separate inline script or here)
-window.FeedbackConfig = window.FeedbackConfig || {
-    // baseUrl: 'https://YOUR-PROJECT.supabase.co',
-    // apiKey: 'YOUR_EDGE_FUNCTION_API_KEY',
-};
-
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function () {
     // Mobile menu functionality
@@ -93,38 +87,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }, observerOptions);
 
     // Observe elements for scroll animations
-    const animatedElements = document.querySelectorAll('.feature-item, .stat-card, .section-title, .section-subtext');
+    const animatedElements = document.querySelectorAll('.feature-card, .step-row, .section-title, .section-subtext');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
-    });
-
-    // Add hover effects to glass elements
-    const glassElements = document.querySelectorAll('.feature-item, .stat-card, .glass-orb');
-
-    glassElements.forEach(element => {
-        element.addEventListener('mouseenter', function () {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
-            this.style.boxShadow = '0 20px 50px rgba(255, 215, 0, 0.2)';
-        });
-
-        element.addEventListener('mouseleave', function () {
-            this.style.transform = 'translateY(0) scale(1)';
-            this.style.boxShadow = '';
-        });
-    });
-
-    // Parallax effect for hero section
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const parallax = document.querySelector('.hero-visual');
-
-        if (parallax) {
-            const speed = scrolled * 0.5;
-            parallax.style.transform = `translateY(${speed}px)`;
-        }
     });
 
     // Add click ripple effect to buttons
@@ -151,172 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Email capture form for Free AI Files (llm.txt + llms-full.txt)
-    const aiFilesForm = document.getElementById('ai-files-form');
-    if (aiFilesForm) {
-        const emailInput = aiFilesForm.querySelector('#email');
-        const websiteInput = aiFilesForm.querySelector('#website');
-        const submitBtn = aiFilesForm.querySelector('button[type="submit"]');
-        const successMsg = document.getElementById('form-success');
-        const supabaseBaseUrl = window.FeedbackConfig && window.FeedbackConfig.baseUrl;
 
-        const isValidEmail = (email) => {
-            // Simple RFC5322-ish email regex suitable for client-side validation
-            return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
-        };
-
-        aiFilesForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const email = (emailInput.value || '').trim();
-            const website = (websiteInput && websiteInput.value ? websiteInput.value : '').trim();
-            if (!isValidEmail(email)) {
-                emailInput.focus();
-                emailInput.setAttribute('aria-invalid', 'true');
-                emailInput.style.borderColor = 'rgba(255, 99, 99, 0.8)';
-                return;
-            } else {
-                emailInput.removeAttribute('aria-invalid');
-                emailInput.style.borderColor = '';
-            }
-
-            // Prevent double submissions
-            submitBtn.disabled = true;
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending…';
-
-            try {
-                const message = 'agentbase inbound';
-
-                if (supabaseBaseUrl && window.FeedbackConfig && window.FeedbackConfig.apiKey) {
-                    const response = await fetch(`${supabaseBaseUrl}/functions/v1/feedback`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            apiKey: window.FeedbackConfig.apiKey,
-                            rating: 5, // Default rating for contact form submissions
-                            text: `Contact Form Submission\n\nEmail: ${email}\nWebsite: ${website || 'N/A'}\n\nMessage: ${message}`,
-                            timestamp: new Date().toISOString()
-                        })
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`Backend responded with ${response.status}`);
-                    }
-                } else {
-                    console.warn('FeedbackConfig.baseUrl/apiKey not set. Falling back to localStorage.');
-                    const key = 'ai_file_requests';
-                    const existing = JSON.parse(localStorage.getItem(key) || '[]');
-                    existing.push({ email, website: website || null, message: 'agentbase inbound', ts: new Date().toISOString() });
-                    localStorage.setItem(key, JSON.stringify(existing));
-                }
-
-                // Show success UI
-                if (successMsg) {
-                    successMsg.hidden = false;
-                }
-                aiFilesForm.reset();
-            } catch (err) {
-                console.error('Form submission error:', err);
-                alert('Sorry, something went wrong. Please try again.');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalText;
-            }
-        });
-
-        // Improve UX: live validation on blur
-        emailInput.addEventListener('blur', () => {
-            if (!emailInput.value) return;
-            if (isValidEmail(emailInput.value)) {
-                emailInput.removeAttribute('aria-invalid');
-                emailInput.style.borderColor = '';
-            }
-        });
-    }
-
-    // Waitlist form for Terminal theme (Bloomberg for Kalshi)
-    const waitlistForm = document.getElementById('waitlist-form');
-    if (waitlistForm) {
-        const emailInput = waitlistForm.querySelector('#email');
-        const submitBtn = waitlistForm.querySelector('button[type="submit"]');
-        const successMsg = document.getElementById('form-success');
-        const supabaseBaseUrl = window.FeedbackConfig && window.FeedbackConfig.baseUrl;
-
-        const isValidEmail = (email) => {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
-        };
-
-        waitlistForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const email = (emailInput.value || '').trim();
-            if (!isValidEmail(email)) {
-                emailInput.focus();
-                emailInput.setAttribute('aria-invalid', 'true');
-                emailInput.style.borderColor = 'rgba(255, 71, 87, 0.8)';
-                return;
-            } else {
-                emailInput.removeAttribute('aria-invalid');
-                emailInput.style.borderColor = '';
-            }
-
-            submitBtn.disabled = true;
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Joining…';
-
-            try {
-                if (supabaseBaseUrl && window.FeedbackConfig && window.FeedbackConfig.apiKey) {
-                    const response = await fetch(`${supabaseBaseUrl}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            apiKey: window.FeedbackConfig.apiKey,
-                            rating: 5,
-                            text: `Waitlist Signup - AgentBase Terminal\n\nEmail: ${email}\nSource: Bloomberg for Kalshi waitlist\n\nTimestamp: ${new Date().toISOString()}`,
-                            timestamp: new Date().toISOString()
-                        })
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`Backend responded with ${response.status}`);
-                    }
-                } else {
-                    console.warn('FeedbackConfig not set. Falling back to localStorage.');
-                    const key = 'waitlist_signups';
-                    const existing = JSON.parse(localStorage.getItem(key) || '[]');
-                    existing.push({ email, source: 'terminal_waitlist', ts: new Date().toISOString() });
-                    localStorage.setItem(key, JSON.stringify(existing));
-                }
-
-                // Show success UI
-                if (successMsg) {
-                    successMsg.hidden = false;
-                }
-                waitlistForm.reset();
-                submitBtn.textContent = 'You\'re in!';
-                submitBtn.style.background = '#00D26A';
-            } catch (err) {
-                console.error('Waitlist submission error:', err);
-                alert('Sorry, something went wrong. Please try again.');
-                submitBtn.textContent = originalText;
-            } finally {
-                submitBtn.disabled = false;
-            }
-        });
-
-        emailInput.addEventListener('blur', () => {
-            if (!emailInput.value) return;
-            if (isValidEmail(emailInput.value)) {
-                emailInput.removeAttribute('aria-invalid');
-                emailInput.style.borderColor = '';
-            }
-        });
-    }
 });
 
 // Add CSS for ripple effect
