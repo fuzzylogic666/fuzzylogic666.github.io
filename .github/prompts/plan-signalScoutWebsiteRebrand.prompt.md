@@ -36,8 +36,8 @@ Transform the current AgentBase waitlist landing page into a Signal Scout app-in
 7. **Remove**: terminal badge, waitlist form, "Coming Soon" overlay, entire animated terminal preview (`.terminal-preview`, `.terminal-window`, `.terminal-body`).
 
 8. **New hero** (following Cherry Pick's layout — text left, phone screenshot right):
-   - Headline: e.g., *"Never Miss a Market Move"*
-   - Tagline: e.g., *"Get instant AI-analyzed alerts when news breaks that could move your subscribed Kalshi markets."*
+   - Headline: e.g., _"Never Miss a Market Move"_
+   - Tagline: e.g., _"Get instant AI-analyzed alerts when news breaks that could move your subscribed Kalshi markets."_
    - **App Store + Google Play download badges** (placeholder `href="#"` for now)
    - **Phone screenshot** on the right (use `discover.png` — the main Discover tab), ~300-350px width with subtle shadow
 
@@ -46,26 +46,26 @@ Transform the current AgentBase waitlist landing page into a Signal Scout app-in
 ## Phase 4: Features Section (index.html)
 
 9. **Redesign the 3-feature cards** (keep existing grid layout, update content):
-   - **AI-Powered Alerts** — bell icon — *"Get real-time, AI-analyzed news alerts for your subscribed markets."*
-   - **Discover & Filter** — search icon — *"Browse trending markets across Politics, Economics, Sports, and more."*
-   - **Track Subscriptions** — chart icon — *"Subscribe to markets you care about and get a personalized feed."*
+   - **AI-Powered Alerts** — bell icon — _"Get real-time, AI-analyzed news alerts for your subscribed markets."_
+   - **Discover & Filter** — search icon — _"Browse trending markets across Politics, Economics, Sports, and more."_
+   - **Track Subscriptions** — chart icon — _"Subscribe to markets you care about and get a personalized feed."_
 
 ---
 
 ## Phase 5: "How It Works" Section (NEW)
 
 10. **Add a 3-step section** between Features and Team Credentials (like Cherry Pick's alternating text + screenshot rows):
-    - **Step 1: "Discover Markets"** — screenshot: `discover.png` — *"Browse and search Kalshi prediction markets. Filter by trending, volume, price range, or closing date."*
-    - **Step 2: "Subscribe & Track"** — screenshot: `onboarding.png` — *"Subscribe to markets you want to follow. We'll monitor price movements and breaking news."*
-    - **Step 3: "Get AI Alerts"** — screenshot: `alerts-detail.png` — *"Receive intelligent alerts with AI-analyzed summaries. Jump straight to Kalshi to act."*
+    - **Step 1: "Discover Markets"** — screenshot: `discover.png` — _"Browse and search Kalshi prediction markets. Filter by trending, volume, price range, or closing date."_
+    - **Step 2: "Subscribe & Track"** — screenshot: `onboarding.png` — _"Subscribe to markets you want to follow. We'll monitor price movements and breaking news."_
+    - **Step 3: "Get AI Alerts"** — screenshot: `alerts-detail.png` — _"Receive intelligent alerts with AI-analyzed summaries. Jump straight to Kalshi to act."_
 
 ---
 
 ## Phase 6: Final CTA Section (NEW)
 
 11. **Add a bottom CTA** (like Cherry Pick's "Start Maximizing"):
-    - Headline: *"Start Trading Smarter"*
-    - Subtext: *"Join traders using Signal Scout to catch market-moving news first."*
+    - Headline: _"Start Trading Smarter"_
+    - Subtext: _"Join traders using Signal Scout to catch market-moving news first."_
     - App Store + Google Play download buttons (same as hero)
 
 ---
@@ -74,7 +74,7 @@ Transform the current AgentBase waitlist landing page into a Signal Scout app-in
 
 12. **Keep "Built by alumni of"** section (Uber, Goldman Sachs, CMU) — just restyle with purple accent.
 
-13. **Update footer**: "Signal Scout" branding, keep privacy link + `hello@useagentbase.dev`, add "© 2026 Signal Scout."
+13. **Update footer**: "Signal Scout" branding, keep privacy link + `founders@useagentbase.dev`, add "© 2026 Signal Scout."
 
 ---
 
@@ -88,17 +88,17 @@ Transform the current AgentBase waitlist landing page into a Signal Scout app-in
 
 ## Relevant Files
 
-| File | Action |
-|------|--------|
-| index.html | Major rewrite — hero, features, add How It Works + CTA sections |
-| styles.css | Color overhaul (gold→purple), remove terminal styles, add new section styles |
-| script.js | Remove waitlist code, keep nav/animation logic |
-| privacy.html | Find/replace AgentBase→Signal Scout, update meta |
-| pricing.html | **DELETE** |
-| llms.txt | Full rewrite |
-| sitemap.xml | Remove old entries, update dates |
-| Screenshots in `assets/Signal Scout/screenshots/iphone/` | Rename files, use in hero + How It Works |
-| `assets/favicon.png` + `assets/logo.png` | Need new Signal Scout icon/logo assets |
+| File                                                     | Action                                                                       |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| index.html                                               | Major rewrite — hero, features, add How It Works + CTA sections              |
+| styles.css                                               | Color overhaul (gold→purple), remove terminal styles, add new section styles |
+| script.js                                                | Remove waitlist code, keep nav/animation logic                               |
+| privacy.html                                             | Find/replace AgentBase→Signal Scout, update meta                             |
+| pricing.html                                             | **DELETE**                                                                   |
+| llms.txt                                                 | Full rewrite                                                                 |
+| sitemap.xml                                              | Remove old entries, update dates                                             |
+| Screenshots in `assets/Signal Scout/screenshots/iphone/` | Rename files, use in hero + How It Works                                     |
+| `assets/favicon.png` + `assets/logo.png`                 | Need new Signal Scout icon/logo assets                                       |
 
 ---
 
@@ -122,7 +122,7 @@ Transform the current AgentBase waitlist landing page into a Signal Scout app-in
 - **Color scheme**: Purple/indigo to match app
 - **App Store links**: Placeholder URLs until available
 - **Team credentials**: Keep for credibility
-- **Contact**: `hello@useagentbase.dev`
+- **Contact**: `founders@useagentbase.dev`
 - **Google Analytics**: Keep `G-FTB5NSQNWW`
 
 ---
