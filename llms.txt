@@ -24,4 +24,4 @@ Signal Scout is a mobile app for Kalshi prediction market enthusiasts. It delive
 
 ## Contact
 - Website: https://useagentbase.dev
-- Email: hello@useagentbase.dev
+- Email: founders@useagentbase.dev

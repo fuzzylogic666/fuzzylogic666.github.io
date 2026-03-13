@@ -1645,7 +1645,7 @@ body {
 }
 
 .privacy-list li::before {
-    content: "â€¢";
+    content: "*";
     color: var(--accent-purple);
     font-weight: 600;
     font-size: 1.2rem;
