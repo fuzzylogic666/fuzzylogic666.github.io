@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Confirmed - Signal Scout</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Your Signal Scout account is confirmed and ready to use.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/SignalScoutLogo.png">
+    <link rel="apple-touch-icon" href="assets/SignalScoutLogo.png">
+    <style>
+        .confirmation-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 60px;
+            text-align: center;
+        }
+
+        .confirmation-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 60px 48px;
+            max-width: 540px;
+            width: 100%;
+            backdrop-filter: blur(20px);
+            box-shadow:
+                0 24px 64px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .checkmark-circle {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.25) 0%, rgba(139, 131, 255, 0.15) 100%);
+            border: 1px solid rgba(108, 99, 255, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+        }
+
+        .checkmark-circle svg {
+            color: #8B83FF;
+        }
+
+        .confirmation-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .confirmation-subtitle {
+            font-size: 16px;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .confirmation-subtitle strong {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--glass-border);
+            margin: 0 0 36px;
+        }
+
+        .open-app-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .store-badges-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .store-badges-row .store-badge {
+            flex: 1;
+            min-width: 140px;
+            max-width: 180px;
+        }
+
+        .store-badges-row .store-badge img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .already-installed {
+            margin-top: 28px;
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        .already-installed a {
+            color: #8B83FF;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .already-installed a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .confirmation-card {
+                padding: 40px 28px;
+            }
+
+            .confirmation-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FTB5NSQNWW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FTB5NSQNWW');
+</script>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Signal Scout</span>
+            </div>
+            <div class="nav-links">
+                <a href="https://linktr.ee/signalscoutapp" class="nav-cta" target="_blank" rel="noopener noreferrer">Download App</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Confirmation Content -->
+    <main class="confirmation-page">
+        <div class="confirmation-card">
+            <div class="checkmark-circle">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+
+            <h1 class="confirmation-title">You're all set!</h1>
+            <p class="confirmation-subtitle">
+                Your <strong>Signal Scout</strong> account is confirmed and ready to use.<br>
+                Open the app to start tracking markets and getting real-time alerts.
+            </p>
+
+            <div class="divider"></div>
+
+            <p class="open-app-label">Open the app</p>
+            <div class="store-badges-row">
+                <a href="https://apps.apple.com/app/signal-scout" class="store-badge" aria-label="Download on the App Store" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/icons/appstore.svg" alt="Download on the App Store">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.cherrypick.KalshiPolyMarketTracker" class="store-badge" aria-label="Get it on Google Play" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/icons/googleplay.png" alt="Get it on Google Play">
+                </a>
+            </div>
+
+            <p class="already-installed">
+                Already have it installed? <a href="kalshipolymarkettracker://">Tap here to open the app</a>
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Signal Scout</div>
+                <div class="footer-links">
+                    <a href="https://useagentbase.dev/privacy" class="footer-link">Privacy Policy</a>
+                    <a href="mailto:founders@useagentbase.dev" class="footer-link">Contact</a>
+                    <a href="https://x.com/UseAgentBaseDev" class="footer-link" target="_blank" rel="noopener noreferrer">Follow on X</a>
+                    <a href="https://discord.com/invite/qpT96sQ2mD" class="footer-link" target="_blank" rel="noopener noreferrer">Discord</a>
+                </div>
+                <div class="footer-copyright">&copy; 2026 Signal Scout. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
