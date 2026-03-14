@@ -1858,6 +1858,10 @@ body {
 
 /* Signal Scout Responsive */
 @media (max-width: 768px) {
+    .qr-code {
+        display: none;
+    }
+
     .features-section .features-grid {
         grid-template-columns: 1fr;
         gap: 24px;
