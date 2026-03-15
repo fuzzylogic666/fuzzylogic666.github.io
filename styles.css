@@ -1897,3 +1897,101 @@ body {
         width: 170px;
     }
 }
+
+/* Social Badge */
+.social-badge {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    background: rgba(108, 99, 255, 0.12);
+    border: 1px solid rgba(108, 99, 255, 0.45);
+    border-radius: 50px;
+    backdrop-filter: blur(20px);
+    text-decoration: none;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(108, 99, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+    animation: badgeFloat 5s ease-in-out infinite;
+}
+
+.social-badge:hover {
+    background: rgba(108, 99, 255, 0.22);
+    border-color: rgba(108, 99, 255, 0.7);
+    box-shadow:
+        0 12px 40px rgba(108, 99, 255, 0.25),
+        0 0 0 1px rgba(108, 99, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+    animation: none;
+}
+
+@keyframes badgeFloat {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-4px); }
+}
+
+.social-badge-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgba(108, 99, 255, 0.2);
+    border: 1px solid rgba(108, 99, 255, 0.35);
+    border-radius: 50%;
+    color: #a5b4fc;
+    flex-shrink: 0;
+}
+
+.social-badge-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.social-badge-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.social-badge-sub {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.2;
+}
+
+.social-badge-arrow {
+    color: #a5b4fc;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.social-badge:hover .social-badge-arrow {
+    transform: translateX(3px);
+}
+
+@media (max-width: 768px) {
+    .social-badge {
+        bottom: 20px;
+        right: 16px;
+        padding: 10px 14px;
+        gap: 10px;
+    }
+
+    .social-badge-sub {
+        display: none;
+    }
+
+    .social-badge-label {
+        font-size: 12px;
+    }
+}
