@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formula 1 Prediction Market Edge - Signal Scout</title>
+    <meta name="description" content="Real-time alerts for Formula 1 prediction markets. Track grid changes, DNFs, and qualifying news on Kalshi before markets shift. Trade F1 smarter with Signal Scout.">
+    <meta name="keywords" content="Formula 1, F1, prediction markets, Kalshi, race trading, F1 betting, driver standings, constructor championship">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/SignalScoutLogo.png">
+    <link rel="apple-touch-icon" href="assets/SignalScoutLogo.png">
+    <style>
+        .category-accent {
+            --cat-color: #e10600;
+            --cat-color-dim: rgba(225, 6, 0, 0.15);
+            --cat-border: rgba(225, 6, 0, 0.4);
+            --cat-glow: rgba(225, 6, 0, 0.1);
+        }
+
+        .category-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            background:
+                radial-gradient(ellipse at 30% 50%, var(--cat-glow) 0%, transparent 60%),
+                radial-gradient(ellipse at center, rgba(108, 99, 255, 0.05) 0%, transparent 70%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: var(--cat-color-dim);
+            border: 1px solid var(--cat-border);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--cat-color);
+            margin-bottom: 24px;
+        }
+
+        .category-hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .category-hero-title .title-main {
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .category-hero-title .title-accent {
+            color: var(--cat-color);
+            -webkit-text-fill-color: var(--cat-color);
+        }
+
+        .category-tagline {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .stat-pills {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 36px;
+        }
+
+        .stat-pill {
+            padding: 6px 14px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.65);
+            font-weight: 500;
+        }
+
+        .stat-pill strong {
+            color: #fff;
+        }
+
+        .category-feature-icon {
+            color: var(--cat-color);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255, 255, 255, 0.45);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 32px;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .back-link svg {
+            transition: transform 0.2s ease;
+        }
+
+        .back-link:hover svg {
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .category-hero-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FTB5NSQNWW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FTB5NSQNWW');
+</script>
+<body class="category-accent">
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Signal Scout</span>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="https://discord.com/invite/qpT96sQ2mD" class="nav-link" target="_blank" rel="noopener noreferrer">Discord</a>
+                <a href="https://linktr.ee/signalscoutapp" class="nav-cta" target="_blank" rel="noopener noreferrer">Download App</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="category-hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <a href="index.html" class="back-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                    Back to Signal Scout
+                </a>
+                <div class="category-eyebrow">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                    Formula 1
+                </div>
+                <h1 class="category-hero-title">
+                    <span class="title-main">Trade </span>
+                    <span class="title-accent">Formula 1</span>
+                    <span class="title-main"><br>Before the Odds Shift</span>
+                </h1>
+                <p class="category-tagline">Grid penalties, mechanical failures, weather red flags — Signal Scout alerts you the moment race-weekend news breaks, before Kalshi markets have time to reprice.</p>
+
+                <div class="stat-pills">
+                    <div class="stat-pill"><strong>Race weekend</strong> alerts every session</div>
+                    <div class="stat-pill"><strong>Driver &amp; constructor</strong> championship markets</div>
+                    <div class="stat-pill"><strong>AI analysis</strong> of how news moves odds</div>
+                </div>
+
+                <div class="download-section">
+                    <div class="qr-code">
+                        <img src="assets/linktree_qr.png" alt="Scan to download" class="qr-code-img">
+                        <p class="qr-code-text">Download Signal Scout</p>
+                    </div>
+                    <div class="download-badges">
+                        <a href="https://apps.apple.com/app/signal-scout" class="store-badge" aria-label="Download on the App Store" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/icons/appstore.svg" alt="Download on the App Store">
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.cherrypick.KalshiPolyMarketTracker" class="store-badge" aria-label="Get it on Google Play" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/icons/googleplay.png" alt="Get it on Google Play">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <img src="assets/signal-scout/screenshots/iphone/alerts-detail.png" alt="Signal Scout F1 alerts" class="hero-phone-screenshot">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Built for race weekend traders</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-card-icon category-feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                    </div>
+                    <h3>Grid &amp; Penalty Alerts</h3>
+                    <p>Grid penalties, parc fermé changes, and mechanical retirements reshape race markets in seconds. We push the alert the moment it's confirmed — while most traders are still watching the highlight reel.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon category-feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Championship Momentum</h3>
+                    <p>Driver and constructor standings shift with every DNF and podium. Signal Scout tracks the points gap in real time and alerts you when a result materially changes the season markets.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon category-feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="M21 21l-4.35-4.35"></path>
+                        </svg>
+                    </div>
+                    <h3>Every F1 Market in One Place</h3>
+                    <p>Race winner, fastest lap, qualifying result, season champion — find and subscribe to all Kalshi F1 markets from a single screen. Never miss a trading opportunity across 24 race weekends.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works-section">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps-list">
+                <div class="step-row">
+                    <div class="step-screenshot">
+                        <img src="assets/signal-scout/screenshots/iphone/discover.png" alt="Discover F1 markets" class="step-phone">
+                    </div>
+                    <div class="step-text">
+                        <h3 class="step-number">1. Find Your Markets</h3>
+                        <p>Browse Kalshi's full F1 market lineup — race winners, qualifying outcomes, season-long championships. Sort by closing date to focus on this weekend's action.</p>
+                    </div>
+                </div>
+                <div class="step-row step-row-reverse">
+                    <div class="step-screenshot">
+                        <img src="assets/signal-scout/screenshots/iphone/onboarding.png" alt="Subscribe to F1 markets" class="step-phone">
+                    </div>
+                    <div class="step-text">
+                        <h3 class="step-number">2. Subscribe in One Tap</h3>
+                        <p>Subscribe to the markets you want covered. We monitor team press releases, pit lane reporters, and official FIA bulletins 24/7 — every session, every circuit.</p>
+                    </div>
+                </div>
+                <div class="step-row">
+                    <div class="step-screenshot">
+                        <img src="assets/signal-scout/screenshots/iphone/alerts-detail.png" alt="F1 alert with AI analysis" class="step-phone">
+                    </div>
+                    <div class="step-text">
+                        <h3 class="step-number">3. React Before the Market</h3>
+                        <p>Signal Scout delivers the alert with AI context — what happened, which driver or constructor it affects, and whether it's bullish or bearish for your position. Trade in the gap before odds update.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Get the F1 Trading Edge</h2>
+                <p class="section-subtext">Join traders already using Signal Scout to stay ahead of race weekend markets. Download the app and connect with the community.</p>
+                <div class="download-section">
+                    <div class="qr-code">
+                        <img src="assets/linktree_qr.png" alt="Scan to download" class="qr-code-img">
+                        <p class="qr-code-text">Download Signal Scout</p>
+                    </div>
+                    <div class="download-badges download-badges-center">
+                        <a href="https://apps.apple.com/app/signal-scout" class="store-badge" aria-label="Download on the App Store" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/icons/appstore.svg" alt="Download on the App Store">
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.cherrypick.KalshiPolyMarketTracker" class="store-badge" aria-label="Get it on Google Play" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/icons/googleplay.png" alt="Get it on Google Play">
+                        </a>
+                    </div>
+                </div>
+                <div style="margin-top: 28px;">
+                    <a href="https://linktr.ee/signalscoutapp" class="hero-cta hero-cta-secondary" target="_blank" rel="noopener noreferrer">Join the Community →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Signal Scout</div>
+                <div class="footer-links">
+                    <a href="https://useagentbase.dev/privacy" class="footer-link">Privacy Policy</a>
+                    <a href="mailto:founders@useagentbase.dev" class="footer-link">Contact</a>
+                    <a href="https://x.com/UseAgentBaseDev" class="footer-link" target="_blank" rel="noopener noreferrer">Follow on X</a>
+                    <a href="https://discord.com/invite/qpT96sQ2mD" class="footer-link" target="_blank" rel="noopener noreferrer">Discord</a>
+                    <a href="https://www.reddit.com/r/PredictionMarketBots/" class="footer-link" target="_blank" rel="noopener noreferrer">Reddit</a>
+                </div>
+                <div class="footer-copyright">&copy; 2026 Signal Scout. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Social Badge -->
+    <a href="https://linktr.ee/signalscoutapp" class="social-badge" target="_blank" rel="noopener noreferrer" aria-label="Join the Signal Scout community">
+        <div class="social-badge-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+        </div>
+        <div class="social-badge-text">
+            <span class="social-badge-label">Join the community</span>
+            <span class="social-badge-sub">Reddit · Discord · X</span>
+        </div>
+        <svg class="social-badge-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

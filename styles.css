@@ -1856,6 +1856,61 @@ body {
     margin-top: 12px;
 }
 
+/* Category Teaser (cycling) */
+.category-teaser {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.category-teaser-static {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.category-teaser-word {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    white-space: nowrap;
+    background: var(--cat-teaser-bg, rgba(108, 99, 255, 0.14));
+    border: 1px solid var(--cat-teaser-border, rgba(108, 99, 255, 0.45));
+    color: var(--cat-teaser-color, #a5b4fc);
+    animation: teaserFadeIn 0.4s ease;
+}
+
+.category-teaser-word::after {
+    content: '→';
+    font-size: 11px;
+    opacity: 0.7;
+    transition: transform 0.2s ease;
+}
+
+.category-teaser-word:hover {
+    transform: translateY(-1px);
+    background: var(--cat-teaser-bg-hover, rgba(108, 99, 255, 0.22));
+    border-color: var(--cat-teaser-border-hover, rgba(108, 99, 255, 0.65));
+}
+
+.category-teaser-word:hover::after {
+    transform: translateX(3px);
+}
+
+@keyframes teaserFadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
 /* Signal Scout Responsive */
 @media (max-width: 768px) {
     .qr-code {
