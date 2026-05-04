@@ -1714,7 +1714,7 @@ body {
 }
 
 /* ========================================
-   SIGNAL SCOUT - App Landing Page Styles
+   MIRROR TRADE - App Landing Page Styles
    ======================================== */
 
 /* Features Section */
@@ -1847,6 +1847,16 @@ body {
     color: var(--text-gray);
     background: none;
     -webkit-text-fill-color: var(--text-gray);
+}
+
+/* Strategist Section */
+.strategist-section {
+    background: var(--secondary-black);
+    padding: 100px 0;
+}
+
+.strategist-section .section-subtext {
+    margin-bottom: 20px;
 }
 
 /* Footer Copyright */

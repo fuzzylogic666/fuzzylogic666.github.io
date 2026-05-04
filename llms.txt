@@ -1,26 +1,31 @@
-# Signal Scout - Prediction Market Alerts App
+# Mirror Trade - Copy Top Prediction Market Traders
 
 ## About
-Signal Scout is a mobile app for Kalshi prediction market enthusiasts. It delivers real-time alerts, curated market discovery, and personalized notifications so you never miss a move on the markets that matter to you.
+Mirror Trade is a mobile app for Kalshi and Polymarket traders. Follow the best-performing prediction market traders, automatically copy their portfolios, and track your P&L in real time. For pro traders, it's a way to monetize the research you're already doing by building a following and earning from your positions.
 
 ## Platform
 - iOS (iPhone & iPad)
-- Available on the App Store
+- Android
+- Available on the App Store and Google Play
 
 ## Key Features
-- **Smart Alerts**: Get notified instantly when prediction markets move based on your custom criteria.
-- **Market Discovery**: Browse and filter Kalshi markets by category, volume, and trending activity.
-- **Personalized Watchlists**: Follow the markets you care about and receive tailored updates.
+- **Follow Top Traders**: Discover strategists ranked by win rate, ROI, and streaks. Review their full track record before following.
+- **Copy Portfolios**: Set a budget, tap follow, and every position they open is mirrored automatically in your copy portfolio.
+- **Live P&L Tracking**: Watch your portfolio update in real time with live Kalshi price feeds.
+- **Position Alerts**: Get push notifications the moment a trader you follow opens or closes a position.
+- **Market Discovery**: Browse and search thousands of Kalshi and Polymarket markets across sports, politics, and economics.
+- **Become a Strategist**: Post your own positions, build a following, and earn directly from your research.
 
 ## How It Works
-1. Download Signal Scout from the App Store.
-2. Set up alerts for the Kalshi markets you want to track.
-3. Receive real-time push notifications when your conditions are met.
+1. Download Mirror Trade from the App Store or Google Play.
+2. Discover top-performing traders and review their stats.
+3. Follow traders and set your copy budget.
+4. Get notified when they post positions and track your P&L live.
 
 ## Target Audience
-- Prediction market traders and enthusiasts
-- Kalshi users who want faster market intelligence
-- Anyone interested in tracking real-world event outcomes
+- Prediction market traders who want to follow and copy top performers
+- Kalshi and Polymarket users looking for an edge
+- Pro traders who want to monetize their research by building a following
 
 ## Contact
 - Website: https://useagentbase.dev
