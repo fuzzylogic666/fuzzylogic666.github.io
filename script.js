@@ -119,6 +119,81 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Category teaser cycling
+    const teaserWord = document.querySelector('.category-teaser-word');
+    if (teaserWord) {
+        const categories = [
+            {
+                label: 'March Madness',
+                url: 'ncaa.html',
+                bg: 'rgba(249, 115, 22, 0.14)',
+                border: 'rgba(249, 115, 22, 0.45)',
+                bgHover: 'rgba(249, 115, 22, 0.22)',
+                borderHover: 'rgba(249, 115, 22, 0.65)',
+                color: '#fdba74',
+            },
+            {
+                label: 'Formula 1',
+                url: 'f1.html',
+                bg: 'rgba(225, 6, 0, 0.14)',
+                border: 'rgba(225, 6, 0, 0.45)',
+                bgHover: 'rgba(225, 6, 0, 0.22)',
+                borderHover: 'rgba(225, 6, 0, 0.65)',
+                color: '#fca5a5',
+            },
+            {
+                label: 'Politics',
+                url: '#features',
+                bg: 'rgba(108, 99, 255, 0.14)',
+                border: 'rgba(108, 99, 255, 0.45)',
+                bgHover: 'rgba(108, 99, 255, 0.22)',
+                borderHover: 'rgba(108, 99, 255, 0.65)',
+                color: '#a5b4fc',
+            },
+            {
+                label: 'Economics',
+                url: '#features',
+                bg: 'rgba(34, 197, 94, 0.12)',
+                border: 'rgba(34, 197, 94, 0.4)',
+                bgHover: 'rgba(34, 197, 94, 0.2)',
+                borderHover: 'rgba(34, 197, 94, 0.6)',
+                color: '#86efac',
+            },
+        ];
+
+        let currentIndex = 0;
+
+        function cycleTeaser() {
+            currentIndex = (currentIndex + 1) % categories.length;
+            const cat = categories[currentIndex];
+
+            teaserWord.style.opacity = '0';
+            teaserWord.style.transform = 'translateY(6px)';
+
+            setTimeout(() => {
+                teaserWord.textContent = cat.label;
+                teaserWord.href = cat.url;
+                teaserWord.style.setProperty('--cat-teaser-bg', cat.bg);
+                teaserWord.style.setProperty('--cat-teaser-border', cat.border);
+                teaserWord.style.setProperty('--cat-teaser-bg-hover', cat.bgHover);
+                teaserWord.style.setProperty('--cat-teaser-border-hover', cat.borderHover);
+                teaserWord.style.color = cat.color;
+                teaserWord.style.background = cat.bg;
+                teaserWord.style.borderColor = cat.border;
+                teaserWord.style.opacity = '1';
+                teaserWord.style.transform = 'translateY(0)';
+            }, 250);
+        }
+
+        // Apply initial styles inline so CSS vars take effect immediately
+        const first = categories[0];
+        teaserWord.style.background = first.bg;
+        teaserWord.style.borderColor = first.border;
+        teaserWord.style.color = first.color;
+        teaserWord.style.transition = 'opacity 0.25s ease, transform 0.25s ease, background 0.2s ease, border-color 0.2s ease';
+
+        setInterval(cycleTeaser, 3000);
+    }
 
 });
 
