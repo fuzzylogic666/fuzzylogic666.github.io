@@ -51,24 +51,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add scroll effect to navigation
     const nav = document.querySelector('.nav');
-    let lastScrollY = window.scrollY;
 
     window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-
-        if (currentScrollY > 100) {
-            nav.style.background = 'rgba(0, 0, 0, 0.5)';
-            nav.style.backdropFilter = 'blur(40px)';
-            nav.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-            nav.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15)';
+        if (window.scrollY > 10) {
+            nav.classList.add('scrolled');
         } else {
-            nav.style.background = 'rgba(0, 0, 0, 0.3)';
-            nav.style.backdropFilter = 'blur(30px)';
-            nav.style.borderColor = 'rgba(255, 255, 255, 0.15)';
-            nav.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)';
+            nav.classList.remove('scrolled');
         }
-
-        lastScrollY = currentScrollY;
     });
 
     // Intersection Observer for fade-in animations
@@ -124,40 +113,49 @@ document.addEventListener('DOMContentLoaded', function () {
     if (teaserWord) {
         const categories = [
             {
-                label: 'March Madness',
-                url: 'ncaa.html',
-                bg: 'rgba(249, 115, 22, 0.14)',
-                border: 'rgba(249, 115, 22, 0.45)',
-                bgHover: 'rgba(249, 115, 22, 0.22)',
-                borderHover: 'rgba(249, 115, 22, 0.65)',
-                color: '#fdba74',
-            },
-            {
                 label: 'Formula 1',
                 url: 'f1.html',
-                bg: 'rgba(225, 6, 0, 0.14)',
-                border: 'rgba(225, 6, 0, 0.45)',
-                bgHover: 'rgba(225, 6, 0, 0.22)',
-                borderHover: 'rgba(225, 6, 0, 0.65)',
-                color: '#fca5a5',
+                bg: 'rgba(225, 6, 0, 0.08)',
+                border: 'rgba(225, 6, 0, 0.3)',
+                bgHover: 'rgba(225, 6, 0, 0.14)',
+                borderHover: 'rgba(225, 6, 0, 0.5)',
+                color: '#dc2626',
+            },
+            {
+                label: 'MLB',
+                url: '#features',
+                bg: 'rgba(22, 163, 74, 0.08)',
+                border: 'rgba(22, 163, 74, 0.3)',
+                bgHover: 'rgba(22, 163, 74, 0.14)',
+                borderHover: 'rgba(22, 163, 74, 0.5)',
+                color: '#16a34a',
             },
             {
                 label: 'Politics',
                 url: '#features',
-                bg: 'rgba(108, 99, 255, 0.14)',
-                border: 'rgba(108, 99, 255, 0.45)',
-                bgHover: 'rgba(108, 99, 255, 0.22)',
-                borderHover: 'rgba(108, 99, 255, 0.65)',
-                color: '#a5b4fc',
+                bg: 'rgba(37, 99, 235, 0.08)',
+                border: 'rgba(37, 99, 235, 0.3)',
+                bgHover: 'rgba(37, 99, 235, 0.14)',
+                borderHover: 'rgba(37, 99, 235, 0.5)',
+                color: '#2563eb',
             },
             {
                 label: 'Economics',
                 url: '#features',
-                bg: 'rgba(34, 197, 94, 0.12)',
-                border: 'rgba(34, 197, 94, 0.4)',
-                bgHover: 'rgba(34, 197, 94, 0.2)',
-                borderHover: 'rgba(34, 197, 94, 0.6)',
-                color: '#86efac',
+                bg: 'rgba(245, 158, 11, 0.08)',
+                border: 'rgba(245, 158, 11, 0.3)',
+                bgHover: 'rgba(245, 158, 11, 0.14)',
+                borderHover: 'rgba(245, 158, 11, 0.5)',
+                color: '#d97706',
+            },
+            {
+                label: 'NHL Playoffs',
+                url: '#features',
+                bg: 'rgba(99, 102, 241, 0.08)',
+                border: 'rgba(99, 102, 241, 0.3)',
+                bgHover: 'rgba(99, 102, 241, 0.14)',
+                borderHover: 'rgba(99, 102, 241, 0.5)',
+                color: '#4f46e5',
             },
         ];
 
@@ -203,7 +201,7 @@ style.textContent = `
     .ripple {
         position: absolute;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.3);
+        background: rgba(22, 163, 74, 0.15);
         transform: scale(0);
         animation: ripple-animation 0.6s linear;
         pointer-events: none;

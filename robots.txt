@@ -11,7 +11,7 @@ Disallow: /private/
 Disallow: /*.log
 
 # Sitemap location
-Sitemap: https://www.useagentbase.dev/sitemap.xml
+Sitemap: https://mirrortrade.pro/sitemap.xml
 
 # Crawl delay (optional - helps prevent overwhelming the server)
 Crawl-delay: 1

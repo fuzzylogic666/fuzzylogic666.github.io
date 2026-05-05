@@ -9,12 +9,12 @@ Mirror Trade is a mobile app for Kalshi and Polymarket traders. Follow the best-
 - Available on the App Store and Google Play
 
 ## Key Features
-- **Follow Top Traders**: Discover strategists ranked by win rate, ROI, and streaks. Review their full track record before following.
-- **Copy Portfolios**: Set a budget, tap follow, and every position they open is mirrored automatically in your copy portfolio.
+- **Discover Strategists**: Browse traders ranked by win rate, ROI, and streaks. Every stat is verified from public Kalshi profiles.
+- **One-Tap Copy Trading**: Set a budget, tap follow, and every new position is automatically mirrored in your portfolio.
 - **Live P&L Tracking**: Watch your portfolio update in real time with live Kalshi price feeds.
-- **Position Alerts**: Get push notifications the moment a trader you follow opens or closes a position.
+- **Whale Alerts & Trade Feed**: See every position from traders you follow in a real-time feed with push notifications.
 - **Market Discovery**: Browse and search thousands of Kalshi and Polymarket markets across sports, politics, and economics.
-- **Become a Strategist**: Post your own positions, build a following, and earn directly from your research.
+- **Become a Strategist**: Post your positions with reasoning, build a public track record, and grow a following.
 
 ## How It Works
 1. Download Mirror Trade from the App Store or Google Play.
@@ -28,5 +28,5 @@ Mirror Trade is a mobile app for Kalshi and Polymarket traders. Follow the best-
 - Pro traders who want to monetize their research by building a following
 
 ## Contact
-- Website: https://useagentbase.dev
+- Website: https://mirrortrade.pro
 - Email: founders@useagentbase.dev
